@@ -5,16 +5,33 @@ import { AiOutlineCalendar, AiOutlineMail } from "react-icons/ai";
 import { BsTelephoneFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 
-function About() {
+function About({ isSection1Active }) {
   const [showTopButton, setShowTopButton] = useState(false);
   const [animateSection2, setAnimateSection2] = useState(false);
+  const [section2Color, setSection2Color] = useState("");
 
   const handleScroll = () => {
     const section2 = document.getElementById("Section2");
-    if (section2) {
-      const rect = section2.getBoundingClientRect();
-      const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
-      setAnimateSection2(isVisible);
+    const section3 = document.getElementById("Section3");
+
+    if (!section2 || !section3) return;
+
+    const section2Rect = section2.getBoundingClientRect();
+    const section3Rect = section3.getBoundingClientRect();
+
+    if (section2Rect.bottom > 0 && section2Rect.top < window.innerHeight) {
+      setAnimateSection2(true);
+    } else {
+      setAnimateSection2(false);
+    }
+
+    // Section3가 화면에 조금이라도 보일 때
+    if (section3Rect.top <= window.innerHeight - 0 && section3Rect.top > 0) {
+      setSection2Color("#8fa3bf");
+    }
+    // 그렇지 않을 때 Section2의 배경색 복원
+    else {
+      setSection2Color("");
     }
 
     if (window.scrollY >= window.innerHeight) {
@@ -35,7 +52,11 @@ function About() {
 
   return (
     <Element name='Section2' id='Section2'>
-      <Section2 className={animateSection2 ? "animate" : ""}>
+      <Section2
+        backgroundColor={section2Color}
+        className={animateSection2 ? "animate" : ""}
+        isActive={isSection1Active}
+      >
         <div className='center'>
           <Title>About Me</Title>
           <Name>이 인 영</Name>
@@ -72,3 +93,4 @@ function About() {
 }
 
 export default About;
+

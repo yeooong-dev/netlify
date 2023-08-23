@@ -17,31 +17,27 @@ import git from "../img/git.png";
 import github from "../img/github.png";
 import slack from "../img/slack.png";
 import figma from "../img/figma.png";
+import { useState } from "react";
 
 function Skills() {
   const ref = useRef(null);
+  const [section3Color, setSection3Color] = useState("#597da8");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("onScreen");
-        } else {
-          entry.target.classList.remove("onScreen");
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
-    return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current);
-      }
+    const handleScroll = () => {
+      const section4 = document.getElementById("Section4");
+      if (!section4) return;
+      const section4Rect = section4.getBoundingClientRect();
+      setSection3Color(
+        section4Rect.top <= window.innerHeight - 0 && section4Rect.top > 0
+          ? "#ebebeb"
+          : "#8fa3bf"
+      );
     };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -50,7 +46,7 @@ function Skills() {
         <h1>Skills</h1>
       </Center>
 
-      <Section3 ref={ref}>
+      <Section3 ref={ref} backgroundColor={section3Color}>
         <div className='left'>
           <div className='front'>
             <p>Front-end</p>

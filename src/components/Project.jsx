@@ -82,7 +82,7 @@ function Project() {
                 </p>
                 <hr />
                 <p className='skills'>
-                  내가 한 기능 : 로그인 기능, 로그아웃 기능, 카카오로그인 기능
+                  내가 한 기능 : 회원가입 validation 기능, 로그인∙로그아웃 기능, 카카오로그인 기능
                 </p>
                 <a
                   href='https://github.com/orgs/hanghaeClone3team/repositories'

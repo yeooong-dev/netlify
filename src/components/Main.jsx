@@ -75,7 +75,7 @@ function Main({ isActive }) {
             offset={-70}
             duration={500}
           >
-            <button>아래로 이동 ↓</button>
+            <button>Scroll ↓</button>
           </Link>
         </Center>
       </Section1>

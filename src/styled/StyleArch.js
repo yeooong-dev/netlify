@@ -1,42 +1,31 @@
 import { css, keyframes, styled } from "styled-components";
 
-const slideInFromLeft = keyframes`
+const flipAndZoomIn = keyframes`
   0% {
     opacity: 0;
-    transform: translateX(-100%);
+    transform: rotateY(180deg) scale(0.5);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
-  }
-`;
-
-const slideInFromRight = keyframes`
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
+    transform: rotateY(0deg) scale(1);
   }
 `;
 
 export const Section5 = styled.div`
   position: relative;
+  top: 0;
   width: 100%;
   height: 1080px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background: #a1aabf;
+  background : #32324b;
 
   h1 {
     color: #f9f9f9;
     font-size: 3rem;
     font-family: var(--title-font);
-    margin-top: -5px;
     margin-bottom: 45px;
   }
 
@@ -78,22 +67,24 @@ export const Section5 = styled.div`
 
 export const Left = styled.div`
   opacity: 0;
-  transform: translateX(-100%);
+  transform: rotateY(180deg) scale(0.5);
+  backface-visibility: hidden;
   animation: ${({ $animateSection5 }) =>
     $animateSection5
       ? css`
-          ${slideInFromLeft} 1.5s forwards
+          ${flipAndZoomIn} 1s forwards
         `
       : ""};
 `;
 
 export const Right = styled.div`
   opacity: 0;
-  transform: translateX(100%);
+  transform: rotateY(180deg) scale(0.5);
+  backface-visibility: hidden;
   animation: ${({ $animateSection5 }) =>
     $animateSection5
       ? css`
-          ${slideInFromRight} 1.5s forwards
+          ${flipAndZoomIn} 1s forwards
         `
       : ""};
 `;

@@ -2,22 +2,20 @@ import { styled, keyframes } from "styled-components";
 import bg from "../img/bg.png";
 
 export const Section1 = styled.div`
-  position: relative;
   width: 100%;
-  height: 1180px;
+  height: 1080px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   background: url(${bg});
-  perspective: 100%;
 
   @media (min-width: 1200px) {
-    height: 1180px;
+    height: 1080px;
   }
 
   @media (max-width: 1200px) {
-    height: 1100px;
+    height: 1080px;
   }
 
   @media (max-width: 768px) {

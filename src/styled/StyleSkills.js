@@ -1,18 +1,9 @@
-import { keyframes, styled } from "styled-components";
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
+import { styled } from "styled-components";
 
 export const Center = styled.div`
   width: 100%;
   height: 80px;
-  background: #597da8;
+  background: #8fa3bf;
   margin-top: -35px;
 
   h1 {
@@ -20,38 +11,23 @@ export const Center = styled.div`
     font-size: 3rem;
     font-family: var(--title-font);
     text-align: center;
-    padding: 120px;
   }
 `;
 
 export const Section3 = styled.div`
   width: 100%;
-  height: 1280px;
+  height: 1180px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #597da8;
-
-  .front,
-  .back,
-  .dev,
-  .col {
-    opacity: 0;
-  }
-
-  &.onScreen {
-    .front,
-    .back,
-    .dev,
-    .col {
-      animation: ${fadeIn} 1s ease-in-out forwards;
-    }
+  background-color: ${(props) => props.backgroundColor || "#8fa3bf"};
 
   .left {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-right: 25px;
+    margin-top: -120px;
 
     .front {
       width: 360px;
@@ -62,7 +38,6 @@ export const Section3 = styled.div`
       flex-direction: column;
       border-radius: 10px;
       background: #f9f9f9;
-      animation-delay: 0.2s;
 
       p {
         font-size: 1.3rem;
@@ -86,6 +61,7 @@ export const Section3 = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
+    margin-top: -120px;
   }
 
   .back {
@@ -98,7 +74,6 @@ export const Section3 = styled.div`
     margin-bottom: 20px;
     border-radius: 10px;
     background: #f9f9f9;
-    animation-delay: 0.8s;
 
     p {
       font-size: 1.3rem;
@@ -122,7 +97,6 @@ export const Section3 = styled.div`
     margin-bottom: 20px;
     border-radius: 10px;
     background: #f9f9f9;
-    animation-delay: 1.2s;
 
     p {
       font-size: 1.3rem;
@@ -146,7 +120,6 @@ export const Section3 = styled.div`
     flex-direction: column;
     border-radius: 10px;
     background: #f9f9f9;
-    animation-delay: 1.6s;
 
     p {
       font-size: 1.3rem;
@@ -168,39 +141,39 @@ export const Section3 = styled.div`
   }
 
   @media (max-width: 768px) {
-    .left{
+    .left {
       .front {
         width: 200px;
-        p{
+        p {
           font-size: 1.1rem;
         }
       }
-    } 
-
-    .right{
-     .back{
-      width: 200px;
-
-      p{
-        font-size: 1.1rem;
-      }
-     }
-
-     .dev{
-      width:200px;
-
-      p{
-        font-size: 1.1rem;
-      }
-     }
-
-     .col{
-      width:200px;
-
-      p{
-        font-size: 1.1rem;
-      }
     }
+
+    .right {
+      .back {
+        width: 200px;
+
+        p {
+          font-size: 1.1rem;
+        }
+      }
+
+      .dev {
+        width: 200px;
+
+        p {
+          font-size: 1.1rem;
+        }
+      }
+
+      .col {
+        width: 200px;
+
+        p {
+          font-size: 1.1rem;
+        }
+      }
     }
   }
 `;

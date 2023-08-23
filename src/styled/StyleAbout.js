@@ -13,17 +13,18 @@ const slideIn = keyframes`
 `;
 
 export const Section2 = styled.div`
-  position: relative;
   width: 100%;
-  height: 940px;
+  height: 1200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url(${about_bg});
+  background-color: ${(props) => props.backgroundColor || "transparent"};
+  background-image: ${(props) => !props.backgroundColor && `url(${about_bg})`};
+  transition: background-color 0.5s step;
 
   &.animate {
     .center {
-      animation: ${slideIn} 1.5s forwards;
+      animation: ${slideIn} 2s forwards;
     }
   }
 
@@ -159,3 +160,4 @@ export const P = styled.p`
     font-size: 1rem;
   }
 `;
+

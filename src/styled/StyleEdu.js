@@ -1,6 +1,6 @@
 import { keyframes, styled } from "styled-components";
 
-const fadeIn = keyframes`
+const sequentialFadeIn = keyframes`
   from {
     opacity: 0;
   }
@@ -12,11 +12,21 @@ const fadeIn = keyframes`
 export const Section4 = styled.div`
   position: relative;
   width: 100%;
-  height: 1100px;
+  height: 1400px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f6f6f6;
+  background-color: ${(props) => props.backgroundColor || "#ebebeb"};
+
+  h1 {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 2.5rem;
+    font-family: var(--title-font);
+    color: #2e2e2e;
+  }
 
   b {
     font-size: 2rem;
@@ -62,20 +72,11 @@ export const Section4 = styled.div`
     }
   }
 `;
+
 export const Top = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: center;
-
-  &.onScreen {
-    opacity: 1;
-    .front,
-    .back,
-    .dev,
-    .col {
-      animation: ${fadeIn} 2s ease-in-out forwards;
-    }
-  }
 `;
 
 export const Line = styled.div`
@@ -90,12 +91,9 @@ export const Education = styled.div`
   justify-content: center;
   flex-direction: column;
   margin-top: 60px;
-  animation-duration: 1s;
-  animation-fill-mode: forwards;
 
   &.onScreen {
-    animation-name: ${fadeIn};
-    animation-delay: 1s;
+    animation: ${sequentialFadeIn} 4s forwards;
   }
 
   @media (max-width: 1200px) {
@@ -121,12 +119,9 @@ export const Career = styled.div`
   justify-content: center;
   flex-direction: column;
   margin-top: 60px;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
 
   &.onScreen {
-    animation-name: ${fadeIn};
-    animation-delay: 2s;
+    animation: ${sequentialFadeIn} 5s forwards;
   }
 
   @media (max-width: 1200px) {
@@ -152,12 +147,9 @@ export const Training = styled.div`
   justify-content: center;
   flex-direction: column;
   margin-top: 60px;
-  animation-duration: 3s;
-  animation-fill-mode: forwards;
 
   &.onScreen {
-    animation-name: ${fadeIn};
-    animation-delay: 3s;
+    animation: ${sequentialFadeIn} 6s forwards;
   }
 
   @media (max-width: 1200px) {
