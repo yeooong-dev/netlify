@@ -14,13 +14,14 @@ const flipAndZoomIn = keyframes`
 export const Section5 = styled.div`
   position: relative;
   top: 0;
-  width: 100%;
-  height: 1080px;
+  width: 85%;
+  height: 800px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background : #32324b;
+  background: #32324b;
+  padding-bottom: 100px;
 
   h1 {
     color: #f9f9f9;
@@ -56,11 +57,19 @@ export const Section5 = styled.div`
     }
   }
 
-  @media (max-width: 600px) {
-    height: 900px;
-
+  @media (max-width: 860px) {
     div {
-      width: 400px;
+      width: 420px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    div {
+      width: 330px;
+
+      a {
+        font-size: 1.2rem;
+      }
     }
   }
 `;

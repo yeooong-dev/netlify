@@ -5,6 +5,7 @@ body {
   text-decoration: none;
   font-family: "SUITE-Regular";
   overflow-x: hidden;
+  background: url(./img/bg.png);
 }
 
 @font-face {
@@ -16,8 +17,9 @@ body {
 }
 
 @font-face {
-  font-family: 'ACCchildrenfall';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112-2@1.0/ACCchildrenfall.woff') format('woff');
+  font-family: "ACCchildrenfall";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112-2@1.0/ACCchildrenfall.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }

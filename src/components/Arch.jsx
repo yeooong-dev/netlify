@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Element } from "react-scroll";
 import { Left, Right, Section5 } from "../styled/StyleArch";
+import { Width } from "../styled/StyleAbout";
 
 function Arch() {
   const [animateSection5, setAnimateSection5] = useState(false);
@@ -26,26 +27,28 @@ function Arch() {
 
   return (
     <Element name='Section5' id='Section5'>
-      <Section5>
-        <h1>Archiving</h1>
-        <Left $animateSection5={animateSection5}>
-          <strong>GitHub</strong>
-          <p>소스 코드 저장소</p>
-          <a href='https://github.com/yeooong-dev' target='_blank'>
-            https://github.com/yeooong-dev
-          </a>
-        </Left>
-        <Right $animateSection5={animateSection5}>
-          <strong>Notion</strong>
-          <p>블로깅</p>
-          <a
-            href='https://www.notion.so/InYeong-e119ac40fd2847cbb6448e8caacac7aa'
-            target='_blank'
-          >
-            https://www.notion.so/InYeong
-          </a>
-        </Right>
-      </Section5>
+      <Width>
+        <Section5>
+          <h1>Archiving</h1>
+          <Left $animateSection5={animateSection5}>
+            <strong>GitHub</strong>
+            <p>소스 코드 저장소</p>
+            <a href='https://github.com/yeooong-dev' target='_blank'>
+              https://github.com/yeooong-dev
+            </a>
+          </Left>
+          <Right $animateSection5={animateSection5}>
+            <strong>Notion</strong>
+            <p>블로깅</p>
+            <a
+              href='https://www.notion.so/InYeong-e119ac40fd2847cbb6448e8caacac7aa'
+              target='_blank'
+            >
+              https://www.notion.so/InYeong
+            </a>
+          </Right>
+        </Section5>
+      </Width>
     </Element>
   );
 }

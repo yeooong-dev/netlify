@@ -19,13 +19,14 @@ const slideFromRight = keyframes`
 `;
 
 export const Section6 = styled.div`
-  width: 100%;
+  width: 85%;
   height: 1700px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   background: #32324b;
+  border-radius: 0 0 30px 30px;
 
   h1 {
     font-size: 3rem;
@@ -38,8 +39,8 @@ export const Section6 = styled.div`
     height: 1550px;
   }
 
-  @media (max-width: 900px) {
-    height: 1700px;
+  @media (max-width: 1000px) {
+    height: 1800px;
   }
 
   @media (max-width: 750px) {
@@ -48,7 +49,7 @@ export const Section6 = styled.div`
 `;
 
 export const Con = styled.div`
-  width: 1100px;
+  width: 1050px;
   height: 600px;
   display: flex;
   align-items: center;
@@ -119,11 +120,11 @@ export const Con = styled.div`
     animation: ${slideFromRight} 2s forwards;
   }
 
-  @media (max-width: 1200px) {
-    width: 980px;
+  @media (max-width: 1400px) {
+    width: 920px;
 
     img {
-      width: 500px;
+      width: 450px;
     }
 
     h3 {
@@ -131,16 +132,16 @@ export const Con = styled.div`
     }
   }
 
-  @media (max-width: 1050px) {
-    width: 840px;
+  @media (max-width: 1200px) {
+    width: 740px;
 
     img {
-      width: 400px;
+      width: 350px;
     }
   }
 
-  @media (max-width: 900px) {
-    width: 700px;
+  @media (max-width: 1000px) {
+    width: 600px;
     height: 700px;
     display: flex;
     flex-direction: column;
@@ -166,11 +167,11 @@ export const Con = styled.div`
   }
 
   @media (max-width: 750px) {
-    width: 610px;
+    width: 450px;
     height: 730px;
 
     img {
-      width: 500px;
+      width: 380px;
     }
 
     h3 {
@@ -180,21 +181,17 @@ export const Con = styled.div`
     }
   }
 
-  @media (max-width: 650px) {
-    width: 500px;
-    height: 750px;
-
-    img {
-      width: 450px;
-    }
-  }
-
   @media (max-width: 600px) {
-    width: 420px;
-    height: 750px;
+    width: 300px;
+    height: 730px;
 
     img {
-      width: 370px;
+      width: 250px;
     }
   }
+`;
+
+export const Margin = styled.div`
+  width: 100%;
+  height: 200px;
 `;

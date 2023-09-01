@@ -1,33 +1,30 @@
 import { styled } from "styled-components";
 
-export const Center = styled.div`
-  width: 100%;
-  height: 80px;
-  background: #8fa3bf;
-  margin-top: -35px;
-
-  h1 {
-    color: #f1f1f1;
-    font-size: 3rem;
-    font-family: var(--title-font);
-    text-align: center;
-  }
-`;
-
 export const Section3 = styled.div`
-  width: 100%;
-  height: 1180px;
+  position: relative;
+  width: 85%;
+  height: 1300px;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${(props) => props.backgroundColor || "#8fa3bf"};
+
+  h1 {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    font-size: 3rem;
+    font-family: var(--title-font);
+    color: #f6f6f6;
+  }
 
   .left {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-right: 25px;
-    margin-top: -120px;
+    margin-top: -80px;
 
     .front {
       width: 360px;
@@ -61,7 +58,7 @@ export const Section3 = styled.div`
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    margin-top: -120px;
+    margin-top: -80px;
   }
 
   .back {
@@ -140,10 +137,32 @@ export const Section3 = styled.div`
     transition: 0.3s;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1100px) {
     .left {
       .front {
-        width: 200px;
+        width: 250px;
+      }
+    }
+
+    .right {
+      .back {
+        width: 250px;
+      }
+
+      .dev {
+        width: 250px;
+      }
+
+      .col {
+        width: 250px;
+      }
+    }
+  }
+
+  @media (max-width: 700px) {
+    .left {
+      .front {
+        width: 150px;
         p {
           font-size: 1.1rem;
         }
@@ -152,7 +171,7 @@ export const Section3 = styled.div`
 
     .right {
       .back {
-        width: 200px;
+        width: 150px;
 
         p {
           font-size: 1.1rem;
@@ -160,7 +179,7 @@ export const Section3 = styled.div`
       }
 
       .dev {
-        width: 200px;
+        width: 150px;
 
         p {
           font-size: 1.1rem;
@@ -168,10 +187,11 @@ export const Section3 = styled.div`
       }
 
       .col {
-        width: 200px;
+        width: 150px;
 
         p {
           font-size: 1.1rem;
+          text-align: center;
         }
       }
     }

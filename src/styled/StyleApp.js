@@ -33,7 +33,7 @@ export const Head = styled.div`
   right: 40px;
   transform: translate(0, -50%) skewX(0deg);
   color: #e6b30e;
-  z-index: 1000;
+  z-index: 90;
   width: 100px;
   text-align: right;
   font-family: var(--bold);
@@ -119,8 +119,7 @@ const bounce = keyframes`
 `;
 
 export const Center = styled.div`
-  position: relative;
-  z-index: 100;
+  transform: translateZ(0);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -164,9 +163,9 @@ export const Center = styled.div`
     animation: ${bounce} 3s infinite;
   }
 
-  @media (max-width: 800px) {
+  @media (max-width: 850px) {
     h1 {
-      font-size: 6rem;
+      font-size: 5rem;
     }
   }
 
@@ -183,7 +182,7 @@ export const Center = styled.div`
 export const TopBtn = styled.button`
   position: fixed;
   bottom: 30px;
-  right: 50px;
+  right: 30px;
   border: none;
   font-size: 1.2rem;
   background: none;

@@ -4,7 +4,7 @@ import { Section1, Center } from "../styled/StyleApp";
 import { Element, Link } from "react-scroll";
 import star from "../img/c1_s1.png";
 
-function Main({ isActive }) {
+function Main() {
   // typing animation
   const [typingText, setTypingText] = useState("");
   const text = "함께 일하기 즐거운 개발자";
@@ -68,13 +68,7 @@ function Main({ isActive }) {
             <h1 className='circle'>Portfolio</h1>
           </div>
           <span>{typingText}</span>
-          <Link
-            to='Section2'
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-          >
+          <Link to='Section2' spy={true} smooth={true} duration={2000}>
             <button>Scroll ↓</button>
           </Link>
         </Center>
