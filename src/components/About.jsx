@@ -11,22 +11,24 @@ function About({ isSection1Active }) {
 
   const handleScroll = () => {
     const section2 = document.getElementById("Section2");
-    const section3 = document.getElementById("Section3");
 
-    if (!section2 || !section3) return;
+    if (!section2) return;
 
-    const section2Rect = section2.getBoundingClientRect();
+    const section2Top = section2.offsetTop;
 
-    if (section2Rect.bottom > 0 && section2Rect.top < window.innerHeight) {
-      setAnimateSection2(true);
-    } else {
-      setAnimateSection2(false);
-    }
-
-    if (section2Rect.bottom <= 0) {
+    if (window.scrollY >= section2Top) {
       setShowTopButton(true);
     } else {
       setShowTopButton(false);
+    }
+
+    if (
+      window.scrollY >= section2Top &&
+      window.scrollY <= section2Top + section2.offsetHeight
+    ) {
+      setAnimateSection2(true);
+    } else {
+      setAnimateSection2(false);
     }
   };
 
@@ -40,45 +42,44 @@ function About({ isSection1Active }) {
   }, []);
 
   return (
-    <Element name='Section2' id='Section2'>
-      <Width>
-        <Section2
-          className={animateSection2 ? "animate" : ""}
-          isActive={isSection1Active}
-        >
-          <div className='center'>
-            <Title>About Me</Title>
-            <Name>이 인 영</Name>
-            <P>Front-End Developer</P>
-            <hr />
-
-            <div className='inner'>
-              <AiOutlineCalendar size='30' />
-              &nbsp;
-              <p>96.01.12</p>
+    <>
+      <Element name='Section2' id='Section2'>
+        <Width>
+          <Section2
+            className={animateSection2 ? "animate" : ""}
+            isActive={isSection1Active}
+          >
+            <div className='center'>
+              <Title>About Me</Title>
+              <Name>이 인 영</Name>
+              <P>Front-End Developer</P>
+              <hr />
+              <div className='inner'>
+                <AiOutlineCalendar size='30' />
+                &nbsp;
+                <p>96.01.12</p>
+              </div>
+              <div className='inner'>
+                <BsTelephoneFill size='30' />
+                &nbsp;
+                <p>010-5300-8219</p>
+              </div>
+              <div className='inner'>
+                <AiOutlineMail size='30' />
+                &nbsp;
+                <p>yeooong12@naver.com</p>
+              </div>
             </div>
+          </Section2>
+        </Width>
+      </Element>
 
-            <div className='inner'>
-              <BsTelephoneFill size='30' />
-              &nbsp;
-              <p>010-5300-8219</p>
-            </div>
-
-            <div className='inner'>
-              <AiOutlineMail size='30' />
-              &nbsp;
-              <p>yeooong12@naver.com</p>
-            </div>
-          </div>
-
-          {showTopButton && (
-            <Link to='Section1' smooth={true} duration={800}>
-              <TopBtn>Top</TopBtn>
-            </Link>
-          )}
-        </Section2>
-      </Width>
-    </Element>
+      {showTopButton && (
+        <Link to='Section1' smooth={true} duration={800}>
+          <TopBtn>Top</TopBtn>
+        </Link>
+      )}
+    </>
   );
 }
 

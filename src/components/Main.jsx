@@ -68,7 +68,13 @@ function Main() {
             <h1 className='circle'>Portfolio</h1>
           </div>
           <span>{typingText}</span>
-          <Link to='Section2' spy={true} smooth={true} duration={2000}>
+          <Link
+            to='Section2'
+            spy={true}
+            smooth={true}
+            duration={1000}
+            offset={-550}
+          >
             <button>Scroll ↓</button>
           </Link>
         </Center>

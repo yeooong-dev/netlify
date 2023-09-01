@@ -30,7 +30,6 @@ function Header() {
 
     const observerOptions = {
       root: null,
-      rootMargin: "0px",
       threshold: 0.5,
     };
 
