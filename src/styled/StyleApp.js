@@ -186,7 +186,6 @@ export const TopBtn = styled.button`
   border: none;
   font-size: 1.2rem;
   background: none;
-  z-index: 99;
   width: 60px;
   height: 60px;
   border-radius: 50%;
