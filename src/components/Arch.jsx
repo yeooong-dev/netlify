@@ -41,7 +41,7 @@ function Arch() {
             <strong>Notion</strong>
             <p>블로깅</p>
             <a
-              href='https://www.notion.so/InYeong-e119ac40fd2847cbb6448e8caacac7aa'
+              href='https://torch-wall-005.notion.site/InYeong-e119ac40fd2847cbb6448e8caacac7aa'
               target='_blank'
             >
               https://www.notion.so/InYeong
