@@ -30,7 +30,7 @@ function Header() {
 
     const observerOptions = {
       root: null,
-      threshold: 0.4,
+      threshold: [0.9, 0.5, 0.5, 0.5, 0.5, 0.9],
     };
 
     const observerCallback = (entries, observer) => {
