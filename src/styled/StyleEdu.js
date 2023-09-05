@@ -16,7 +16,7 @@ export const Section4 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.backgroundColor || "#ebebeb"};
+  background-color: ${(props) => props.$backgroundColor || "#ebebeb"};
 
   h1 {
     position: absolute;

@@ -7,7 +7,7 @@ export const Section3 = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.backgroundColor || "#8fa3bf"};
+  background-color: ${(props) => props.$backgroundColor || "#8fa3bf"};
 
   h1 {
     position: absolute;

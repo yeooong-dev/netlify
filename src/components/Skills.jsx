@@ -46,7 +46,7 @@ function Skills() {
   return (
     <Element name='Section3' id='Section3'>
       <Width>
-        <Section3 ref={ref} backgroundColor={section3Color}>
+        <Section3 ref={ref} $backgroundColor={section3Color}>
           <h1>Skills</h1>
           <div className='left'>
             <div className='front'>

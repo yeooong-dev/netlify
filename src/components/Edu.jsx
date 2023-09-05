@@ -66,7 +66,7 @@ function Edu() {
   return (
     <Element name='Section4' id='Section4'>
       <Width>
-        <Section4 ref={ref} backgroundColor={section4Color}>
+        <Section4 ref={ref} $backgroundColor={section4Color}>
           <h1>Profile</h1>
           <Top className={showAnimation ? "onScreen" : ""}>
             <Education className={showAnimation ? "onScreen" : ""}>

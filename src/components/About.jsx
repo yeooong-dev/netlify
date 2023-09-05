@@ -8,28 +8,27 @@ import { useEffect, useState } from "react";
 function About({ isSection1Active }) {
   const [showTopButton, setShowTopButton] = useState(false);
   const [animateSection2, setAnimateSection2] = useState(false);
-  
+
   const handleScroll = () => {
     const section2 = document.getElementById("Section2");
 
     if (!section2) return;
 
-    const section2Top = section2.offsetTop;
-    const section2Bottom = section2Top + section2.offsetHeight;
+    const section2Rect = section2.getBoundingClientRect();
 
-    if (window.scrollY >= section2Bottom) {
-      setShowTopButton(true);
-    } else {
-      setShowTopButton(false);
-    }
-
-    if (window.scrollY >= section2Top && window.scrollY <= section2Bottom) {
+    if (section2Rect.bottom > 0 && section2Rect.top < window.innerHeight) {
       setAnimateSection2(true);
     } else {
       setAnimateSection2(false);
     }
-  };
 
+    if (section2Rect.bottom <= 0) {
+      setShowTopButton(true);
+    } else {
+      setShowTopButton(false);
+    }
+  };
+  
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     handleScroll();
