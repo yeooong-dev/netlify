@@ -29,10 +29,17 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div
+      style={{
+        width: "100%",
+        margin: "0",
+        overflowX: "hidden",
+      }}
+    >
       <Header />
-      <Main />
+      <Main id='Section1' />
       <div
+        id='AboutWrapper'
         style={{
           position: "absolute",
           top: "1080px",
@@ -40,13 +47,13 @@ function App() {
           transform: `translateY(${translateY}px)`,
         }}
       >
-        <About />
-        <Skills />
-        <Edu />
-        <Arch />
-        <Project />
+        <About id='Section2' />
+        <Skills id='Section3' />
+        <Edu id='Section4' />
+        <Arch id='Section5' />
+        <Project id='Section6' />
       </div>
-    </>
+    </div>
   );
 }
 

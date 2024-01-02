@@ -1,48 +1,36 @@
-// Arch 컴포넌트
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Element } from "react-scroll";
 import { Left, Right, Section5 } from "../styled/StyleArch";
 import { Width } from "../styled/StyleAbout";
+import { useInView } from "framer-motion";
 
 function Arch() {
-  const [animateSection5, setAnimateSection5] = useState(false);
-
-  const handleScroll = () => {
-    const section5 = document.getElementById("Section5");
-    if (section5) {
-      const rect = section5.getBoundingClientRect();
-      const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
-      setAnimateSection5(isVisible);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 1 });
 
   return (
     <Element name='Section5' id='Section5'>
       <Width>
-        <Section5>
+        <Section5 ref={ref}>
           <h1>Archiving</h1>
-          <Left $animateSection5={animateSection5}>
+          <Left animate={isInView}>
             <strong>GitHub</strong>
             <p>소스 코드 저장소</p>
-            <a href='https://github.com/yeooong-dev' target='_blank'>
+            <a
+              href='https://github.com/yeooong-dev'
+              target='_blank'
+              rel='noreferrer'
+            >
               https://github.com/yeooong-dev
             </a>
           </Left>
-          <Right $animateSection5={animateSection5}>
+          <Right animate={isInView}>
             <strong>Notion</strong>
             <p>블로깅</p>
             <a
               href='https://torch-wall-005.notion.site/InYeong-e119ac40fd2847cbb6448e8caacac7aa'
               target='_blank'
+              rel='noreferrer'
             >
               https://www.notion.so/InYeong
             </a>

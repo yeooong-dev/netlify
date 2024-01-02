@@ -9,64 +9,44 @@ function Header() {
     setActiveMenu(menu);
   };
 
+  const sections = [
+    "Section1",
+    "Section2",
+    "Section3",
+    "Section4",
+    "Section5",
+    "Section6",
+  ];
+
+  const menuMap = {
+    Section1: "main",
+    Section2: "about",
+    Section3: "skills",
+    Section4: "edu",
+    Section5: "arch",
+    Section6: "projects",
+  };
+
   useEffect(() => {
-    const menuMap = {
-      Section1: "main",
-      Section2: "about",
-      Section3: "skills",
-      Section4: "edu",
-      Section5: "arch",
-      Section6: "projects",
-    };
+    const onScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
 
-    const sectionIndices = {
-      main: 0,
-      about: 1,
-      skills: 2,
-      edu: 3,
-      arch: 4,
-      projects: 5,
-    };
+      for (const sectionId of sections) {
+        const section = document.getElementById(sectionId);
+        if (!section) continue;
 
-    const observerOptions = {
-      root: null,
-      threshold: [0.9, 0.5, 0.5, 0.5, 0.5, 0.9],
-    };
+        let sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        let sectionBottom = sectionTop + section.offsetHeight;
 
-    const observerCallback = (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveMenu(menuMap[entry.target.id]);
-          document.documentElement.style.setProperty(
-            "--active-section",
-            sectionIndices[menuMap[entry.target.id]]
-          );
+        if (sectionTop <= scrollPosition && sectionBottom > scrollPosition) {
+          setActiveMenu(menuMap[sectionId]);
+          break;
         }
-      });
-    };
-
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
-    );
-
-    const sections = [
-      "Section1",
-      "Section2",
-      "Section3",
-      "Section4",
-      "Section5",
-      "Section6",
-    ];
-    sections.forEach((sectionId) => {
-      observer.observe(document.getElementById(sectionId));
-    });
-
-    return () => {
-      if (observer) {
-        observer.disconnect();
       }
     };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
@@ -133,7 +113,7 @@ function Header() {
               Projects
             </Link>
           </li>
-        </ul>{" "}
+        </ul>
       </Head>
     </>
   );

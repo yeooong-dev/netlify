@@ -15,11 +15,13 @@ function About({ isSection1Active }) {
     if (!section2) return;
 
     const section2Rect = section2.getBoundingClientRect();
-
-    if (section2Rect.bottom > 0 && section2Rect.top < window.innerHeight) {
+    
+    if (
+      !animateSection2 &&
+      section2Rect.bottom > 0 &&
+      section2Rect.top < window.innerHeight
+    ) {
       setAnimateSection2(true);
-    } else {
-      setAnimateSection2(false);
     }
 
     if (section2Rect.bottom <= 0) {
@@ -28,7 +30,7 @@ function About({ isSection1Active }) {
       setShowTopButton(false);
     }
   };
-  
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     handleScroll();

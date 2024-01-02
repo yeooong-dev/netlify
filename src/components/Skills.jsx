@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { Section3 } from "../styled/StyleSkills";
+import React, { useEffect } from "react";
+import { Section3, fadeInUpVariants } from "../styled/StyleSkills";
 import { Element } from "react-scroll";
 import htmlImg from "../img/html.png";
 import cssImg from "../img/css3.png";
@@ -19,9 +19,12 @@ import slack from "../img/slack.png";
 import figma from "../img/figma.png";
 import { useState } from "react";
 import { Width } from "../styled/StyleAbout";
+import { useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 function Skills() {
-  const ref = useRef(null);
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, threshold: 1 });
   const [section3Color, setSection3Color] = useState("#597da8");
 
   useEffect(() => {
@@ -29,11 +32,11 @@ function Skills() {
       const section4 = document.getElementById("Section4");
       if (!section4) return;
       const section4Rect = section4.getBoundingClientRect();
-      const triggerPoint = window.innerHeight / 1; 
+      const triggerPoint = window.innerHeight / 1;
       setSection3Color(
         section4Rect.top <= triggerPoint && section4Rect.top > 0
           ? "#f0f0f0"
-          : "#a2a4a3"
+          : "#919191"
       );
     };
 
@@ -46,9 +49,17 @@ function Skills() {
   return (
     <Element name='Section3' id='Section3'>
       <Width>
-        <Section3 ref={ref} $backgroundColor={section3Color}>
+        <Section3
+          ref={ref}
+          $backgroundColor={section3Color}
+          animate={isInView ? "visible" : "hidden"}
+        >
           <h1>Skills</h1>
-          <div className='left'>
+          <motion.div
+            className='left'
+            variants={fadeInUpVariants}
+            animate={isInView ? "visible" : "hidden"}
+          >
             <div className='front'>
               <p>Front-end</p>
               <img src={htmlImg} alt='HTML' />
@@ -61,9 +72,13 @@ function Skills() {
               <img src={styledImg} alt='styled-components' />
               <img src={boot} alt='bootstrap' />
             </div>
-          </div>
+          </motion.div>
 
-          <div className='right'>
+          <motion.div
+            className='right'
+            variants={fadeInUpVariants}
+            animate={isInView ? "visible" : "hidden"}
+          >
             <div className='back'>
               <p>Back-end</p>
               <img src={nodeImg} alt='node.js' />
@@ -80,7 +95,7 @@ function Skills() {
               <img src={slack} alt='slack' />
               <img src={figma} alt='figma' />
             </div>
-          </div>
+          </motion.div>
         </Section3>
       </Width>
     </Element>

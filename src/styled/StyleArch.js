@@ -1,30 +1,25 @@
-import { css, keyframes, styled } from "styled-components";
+import { styled } from "styled-components";
+import { motion } from "framer-motion";
 
-const flipAndZoomIn = keyframes`
-  0% {
-    opacity: 0;
-    transform: rotateY(180deg) scale(0.5);
-  }
-  100% {
-    opacity: 1;
-    transform: rotateY(0deg) scale(1);
-  }
-`;
+const fadeInUpVariants = {
+  visible: { opacity: 1, y: 0, transition: { duration: 3 } },
+  hidden: { opacity: 0, y: 50 },
+};
 
 export const Section5 = styled.div`
   position: relative;
   top: 0;
-  width: 85%;
+  width: 90%;
   height: 800px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background: #32324b;
   padding-bottom: 100px;
+  background: #f0f0f0;
 
   h1 {
-    color: #f9f9f9;
+    color: #2e2e2e;
     font-size: 3rem;
     font-family: var(--title-font);
     margin-bottom: 45px;
@@ -35,7 +30,8 @@ export const Section5 = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 600px;
+    width: 80%;
+    max-width: 600px;
     height: 230px;
     background: #f9f9f9;
     margin-bottom: 20px;
@@ -54,46 +50,59 @@ export const Section5 = styled.div`
       color: #e6b30e;
       cursor: pointer;
       font-size: 1.3rem;
+      text-align: center;
     }
-  }
 
-  @media (max-width: 860px) {
-    div {
-      width: 420px;
+    a:hover {
+      opacity: 50%;
+      transition: 0.3s;
     }
   }
 
   @media (max-width: 600px) {
-    div {
-      width: 330px;
+    height: 600px;
 
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 45px;
+    }
+
+    div {
       a {
         font-size: 1.2rem;
+      }
+      a:hover {
+        background: none;
+        opacity: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 450px) {
+    div {
+      a {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  @media (max-width: 360px) {
+    div {
+      a {
+        font-size: 14px;
       }
     }
   }
 `;
 
-export const Left = styled.div`
-  opacity: 0;
-  transform: rotateY(180deg) scale(0.5);
-  backface-visibility: hidden;
-  animation: ${({ $animateSection5 }) =>
-    $animateSection5
-      ? css`
-          ${flipAndZoomIn} 1s forwards
-        `
-      : ""};
-`;
+export const Left = styled(motion.div).attrs((props) => ({
+  variants: fadeInUpVariants,
+  initial: "hidden",
+  animate: props.animate ? "visible" : "hidden",
+}))``;
 
-export const Right = styled.div`
-  opacity: 0;
-  transform: rotateY(180deg) scale(0.5);
-  backface-visibility: hidden;
-  animation: ${({ $animateSection5 }) =>
-    $animateSection5
-      ? css`
-          ${flipAndZoomIn} 1s forwards
-        `
-      : ""};
-`;
+export const Right = styled(motion.div).attrs((props) => ({
+  variants: fadeInUpVariants,
+  initial: "hidden",
+  animate: props.animate ? "visible" : "hidden",
+}))``;

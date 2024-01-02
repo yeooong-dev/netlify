@@ -15,15 +15,12 @@ import { Width } from "../styled/StyleAbout";
 function Edu() {
   const ref = useRef(null);
   const [showAnimation, setShowAnimation] = useState(false);
-  const [section4Color, setSection4Color] = useState("#a1aabf");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !showAnimation) {
           setShowAnimation(true);
-        } else {
-          setShowAnimation(false);
         }
       },
       {
@@ -40,33 +37,12 @@ function Edu() {
         observer.unobserve(ref.current);
       }
     };
-  }, []);
-
-  // 색상
-  useEffect(() => {
-    const handleScroll = () => {
-      const section5 = document.getElementById("Section5");
-      if (!section5) return;
-      const section5Rect = section5.getBoundingClientRect();
-      const triggerPoint = window.innerHeight / 1;
-
-      setSection4Color(
-        section5Rect.top <= triggerPoint && section5Rect.top > 0
-          ? "#32324b"
-          : "#f0f0f0"
-      );
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [showAnimation]);
 
   return (
     <Element name='Section4' id='Section4'>
       <Width>
-        <Section4 ref={ref} $backgroundColor={section4Color}>
+        <Section4 ref={ref}>
           <h1>Profile</h1>
           <Top className={showAnimation ? "onScreen" : ""}>
             <Education className={showAnimation ? "onScreen" : ""}>
@@ -77,6 +53,7 @@ function Edu() {
 
               <br />
               <hr />
+              <br />
 
               <p>서정대학교 경영학과 졸업 </p>
               <p>(2015.02 ~ 2017.02)</p>

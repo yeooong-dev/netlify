@@ -1,4 +1,4 @@
-import { keyframes, styled } from "styled-components";
+import { css, keyframes, styled } from "styled-components";
 
 const sequentialFadeIn = keyframes`
   from {
@@ -11,16 +11,17 @@ const sequentialFadeIn = keyframes`
 
 export const Section4 = styled.div`
   position: relative;
-  width: 85%;
-  height: 1350px;
+  width: 90%;
+  height: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${(props) => props.$backgroundColor || "#ebebeb"};
+  background-color: ${(props) => props.$backgroundColor || "#f0f0f0"};
+  overflow-y: hidden;
 
   h1 {
     position: absolute;
-    top: 100px;
+    top: 0;
     left: 50%;
     transform: translate(-50%, 0);
     font-size: 2.5rem;
@@ -31,7 +32,8 @@ export const Section4 = styled.div`
   b {
     font-size: 2rem;
     font-family: var(--title-font);
-    margin-bottom: 25px;
+    margin: 25px;
+    color: #2e2e2e;
   }
 
   p {
@@ -47,11 +49,8 @@ export const Section4 = styled.div`
   }
 
   @media (max-width: 900px) {
-    height: 1300px;
-
     b {
       font-size: 1.5rem;
-      margin-top: 20px;
     }
 
     p {
@@ -60,11 +59,8 @@ export const Section4 = styled.div`
   }
 
   @media (max-width: 768px) {
-    height: 1050px;
-
     b {
       font-size: 1.5rem;
-      margin-top: 100px;
     }
 
     p {
@@ -74,7 +70,6 @@ export const Section4 = styled.div`
   }
 
   @media (max-width: 700px) {
-    height: 1100px;
     b {
       font-size: 1.2rem;
     }
@@ -84,9 +79,24 @@ export const Section4 = styled.div`
       font-size: 0.9rem;
     }
   }
+
+  @media (max-width: 600px) {
+    height: 950px;
+
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 550px) {
+    b {
+      font-size: 1rem;
+    }
+  }
 `;
 
 export const Top = styled.div`
+  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -94,126 +104,65 @@ export const Top = styled.div`
 
 export const Line = styled.div`
   border-left: thin solid #b3b3b3;
-  height: 860px;
-
-  @media (max-width: 768px) {
-    margin-top: 100px;
-    height: 750px;
-  }
-
-  @media (max-width: 720px) {
-    margin-top: 150px;
-    height: 800px;
-  }
+  height: 800px;
 `;
 
 export const Education = styled.div`
-  width: 400px;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 60px;
+  margin: 20px;
+  text-align: center;
 
   &.onScreen {
-    animation: ${sequentialFadeIn} 5s forwards;
+    animation: ${css`
+      ${sequentialFadeIn} 5s forwards
+    `};
   }
 
-  @media (max-width: 1400px) {
-    width: 320px;
-  }
-
-  @media (max-width: 1200px) {
-    width: 240px;
-  }
-
-  @media (max-width: 900px) {
-    width: 200px;
-  }
-
-  @media (max-width: 768px) {
-    width: 200px;
-    margin-top: 50px;
-  }
-
-  @media (max-width: 700px) {
-    width: 100px;
-    text-align: center;
-    margin: 15px;
-    margin-top: 80px;
+  @media (max-width: 455px) {
+    margin: 10px;
   }
 `;
 
 export const Career = styled.div`
-  width: 400px;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 60px;
+  margin: 20px;
+  text-align: center;
 
   &.onScreen {
-    animation: ${sequentialFadeIn} 6s forwards;
+    animation: ${css`
+      ${sequentialFadeIn} 6s forwards
+    `};
   }
 
-  @media (max-width: 1400px) {
-    width: 320px;
-  }
-
-  @media (max-width: 1200px) {
-    width: 240px;
-  }
-
-  @media (max-width: 900px) {
-    width: 200px;
-  }
-
-  @media (max-width: 768px) {
-    width: 200px;
-    margin-top: 50px;
-  }
-
-  @media (max-width: 700px) {
-    width: 100px;
-    text-align: center;
-    margin: 15px;
-    margin-top: 80px;
+  @media (max-width: 455px) {
+    margin: 10px;
   }
 `;
 
 export const Training = styled.div`
-  width: 400px;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 60px;
+  margin: 20px;
+  text-align: center;
 
   &.onScreen {
-    animation: ${sequentialFadeIn} 7s forwards;
+    animation: ${css`
+      ${sequentialFadeIn} 5s forwards
+    `};
   }
 
-  @media (max-width: 1400px) {
-    width: 320px;
-  }
-
-  @media (max-width: 1200px) {
-    width: 240px;
-  }
-
-  @media (max-width: 900px) {
-    width: 200px;
-  }
-
-  @media (max-width: 768px) {
-    width: 200px;
-    margin-top: 50px;
-  }
-
-  @media (max-width: 700px) {
-    width: 100px;
-    text-align: center;
-    margin: 15px;
-    margin-top: 80px;
+  @media (max-width: 455px) {
+    margin: 10px;
   }
 `;

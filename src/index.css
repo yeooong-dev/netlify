@@ -1,11 +1,15 @@
-body {
+* {
   margin: 0;
   padding: 0;
   border: none;
   text-decoration: none;
-  font-family: "SUITE-Regular";
   overflow-x: hidden;
-  background: url(./img/bg.png);
+}
+
+body {
+  width: 100%;
+  font-family: "SUITE-Regular";
+  background: #262b33;
 }
 
 @font-face {

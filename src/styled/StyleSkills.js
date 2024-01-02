@@ -1,8 +1,18 @@
 import { styled } from "styled-components";
+import { motion } from "framer-motion";
 
-export const Section3 = styled.div`
+export const fadeInUpVariants = {
+  visible: { opacity: 1, y: 0, transition: { duration: 1 } },
+  hidden: { opacity: 0, y: 50 },
+};
+
+export const Section3 = styled(motion.div).attrs((props) => ({
+  variants: fadeInUpVariants,
+  initial: "hidden",
+  animate: props.animate ? "visible" : "hidden",
+}))`
   position: relative;
-  width: 85%;
+  width: 90%;
   height: 1300px;
   display: flex;
   align-items: center;
@@ -192,6 +202,63 @@ export const Section3 = styled.div`
         p {
           font-size: 1.1rem;
           text-align: center;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    height: 1200px;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .back:hover,
+    .dev:hover,
+    .col:hover {
+      margin-top: 0px;
+    }
+
+    .left {
+      .front:hover {
+        margin-top: 0px;
+      }
+    }
+  }
+
+  @media (max-width: 420px) {
+    .left {
+      .front {
+        width: 110px;
+        p {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .right {
+      .back {
+        width: 110px;
+
+        p {
+          font-size: 12px;
+        }
+      }
+
+      .dev {
+        width: 110px;
+
+        p {
+          font-size: 12px;
+        }
+      }
+
+      .col {
+        width: 110px;
+
+        p {
+          font-size: 12px;
         }
       }
     }

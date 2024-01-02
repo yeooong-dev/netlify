@@ -1,54 +1,41 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
+import { motion } from "framer-motion";
 
-const slideFromLeft = keyframes`
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-`;
-
-const slideFromRight = keyframes`
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-`;
+const fadeInUpVariants = {
+  visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.1 } },
+  hidden: { opacity: 0, y: 20 },
+};
 
 export const Section6 = styled.div`
-  width: 85%;
-  height: 1700px;
+  width: 90%;
+  height: auto;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background: #32324b;
+  background: #f0f0f0;
   border-radius: 0 0 30px 30px;
+  padding-bottom: 50px;
 
   h1 {
     font-size: 3rem;
     font-family: var(--title-font);
     margin: 3rem;
-    color: #f6f6f6;
+    color: #2e2e2e;
   }
 
-  @media (max-width: 1200px) {
-    height: 1550px;
-  }
-
-  @media (max-width: 1000px) {
-    height: 1800px;
-  }
-
-  @media (max-width: 750px) {
-    height: 1800px;
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2rem;
+    }
   }
 `;
 
-export const Con = styled.div`
+export const Con = styled(motion.div).attrs((props) => ({
+  variants: fadeInUpVariants,
+  initial: "hidden",
+  animate: props.animate ? "visible" : "hidden",
+}))`
   width: 1050px;
   height: 600px;
   display: flex;
@@ -58,66 +45,64 @@ export const Con = styled.div`
   background: #f6f6f6;
   margin-bottom: 50px;
   border-radius: 25px;
+  box-shadow: 8px 8px 6px 2px rgba(94, 94, 94, 0.13);
+  -webkit-box-shadow: 8px 8px 6px 2px rgba(94, 94, 94, 0.13);
+  -moz-box-shadow: 8px 8px 6px 2px rgba(94, 94, 94, 0.13);
 
   h3 {
     font-size: 2.3rem;
     font-weight: bold;
     font-family: TheJamsil5Bold;
     color: #2e2e2e;
-    margin-top: 80px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 
   a {
     text-decoration: none;
     color: #dba058;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-right: 15px;
+  }
+
+  a:hover {
+    opacity: 50%;
+    transition: 0.3s;
   }
 
   .team {
     font-size: 1.1rem;
     color: gray;
-    margin-top: -20px;
+    margin-bottom: 20px;
   }
 
   img {
-    width: 580px;
+    width: 700px;
     margin-right: 30px;
   }
 
   .center {
-    width: 85%;
+    width: 80%;
     display: flex;
     align-items: center;
-    margin-bottom: 80px;
+
+    .right {
+      width: 100%;
+      height: auto;
+    }
   }
 
   .ment {
-    line-height: 1.8rem;
+    line-height: 1.6rem;
   }
 
   .skills {
     line-height: 1.5rem;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
   }
 
   .front {
     line-height: 1.5rem;
-  }
-
-  &.hidden-left {
-    transform: translateX(-100%);
-  }
-
-  &.hidden-right {
-    transform: translateX(100%);
-  }
-
-  &.animate-first {
-    animation: ${slideFromLeft} 2s forwards;
-  }
-  &.animate-second {
-    animation: ${slideFromRight} 2s forwards;
+    margin-bottom: 10px;
   }
 
   @media (max-width: 1400px) {
@@ -155,8 +140,6 @@ export const Con = styled.div`
 
     h3 {
       font-size: 1.5rem;
-      margin-bottom: 23px;
-      margin-top: 90px;
     }
 
     .center {
@@ -176,17 +159,45 @@ export const Con = styled.div`
 
     h3 {
       font-size: 1.6rem;
-      margin-top: 110px;
-      margin-bottom: 23px;
     }
   }
 
   @media (max-width: 600px) {
-    width: 300px;
+    width: 400px;
     height: 730px;
 
     img {
       width: 250px;
+    }
+
+    a:hover {
+      background: none;
+      opacity: 100%;
+    }
+  }
+
+  @media (max-width: 450px) {
+    width: 300px;
+  }
+
+  @media (max-width: 380px) {
+    width: 260px;
+    height: 700px;
+
+    .ment {
+      font-size: 14px;
+    }
+
+    .skills {
+      font-size: 14px;
+    }
+
+    .front {
+      font-size: 14px;
+    }
+
+    a {
+      font-size: 14px;
     }
   }
 `;
