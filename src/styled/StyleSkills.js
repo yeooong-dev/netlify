@@ -1,16 +1,11 @@
 import { styled } from "styled-components";
-import { motion } from "framer-motion";
 
 export const fadeInUpVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 1 } },
   hidden: { opacity: 0, y: 50 },
 };
 
-export const Section3 = styled(motion.div).attrs((props) => ({
-  variants: fadeInUpVariants,
-  initial: "hidden",
-  animate: props.animate ? "visible" : "hidden",
-}))`
+export const Section3 = styled.div`
   position: relative;
   width: 90%;
   height: 1300px;

@@ -14,10 +14,10 @@ function Project() {
   const ref3 = useRef(null);
   const ref4 = useRef(null);
 
-  const isInView1 = useInView(ref1, { once: true, threshold: 0.5 });
-  const isInView2 = useInView(ref2, { once: true, threshold: 0.5 });
-  const isInView3 = useInView(ref3, { once: true, threshold: 0.5 });
-  const isInView4 = useInView(ref4, { once: true, threshold: 0.5 });
+  const isInView1 = useInView(ref1, { once: true, threshold: 0.9 });
+  const isInView2 = useInView(ref2, { once: true, threshold: 0.9 });
+  const isInView3 = useInView(ref3, { once: true, threshold: 0.9 });
+  const isInView4 = useInView(ref4, { once: true, threshold: 0.9 });
 
   return (
     <>

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const fadeInUpVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 0.1 } },
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 50 },
 };
 
 export const Section6 = styled.div`

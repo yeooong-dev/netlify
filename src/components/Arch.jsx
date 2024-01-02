@@ -6,7 +6,7 @@ import { useInView } from "framer-motion";
 
 function Arch() {
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 1 });
+  const isInView = useInView(ref, { once: true, threshold: 100 });
 
   return (
     <Element name='Section5' id='Section5'>

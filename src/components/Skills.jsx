@@ -49,15 +49,12 @@ function Skills() {
   return (
     <Element name='Section3' id='Section3'>
       <Width>
-        <Section3
-          ref={ref}
-          $backgroundColor={section3Color}
-          animate={isInView ? "visible" : "hidden"}
-        >
+        <Section3 ref={ref} $backgroundColor={section3Color}>
           <h1>Skills</h1>
           <motion.div
             className='left'
             variants={fadeInUpVariants}
+            initial='hidden'
             animate={isInView ? "visible" : "hidden"}
           >
             <div className='front'>
@@ -77,6 +74,7 @@ function Skills() {
           <motion.div
             className='right'
             variants={fadeInUpVariants}
+            initial='hidden'
             animate={isInView ? "visible" : "hidden"}
           >
             <div className='back'>
