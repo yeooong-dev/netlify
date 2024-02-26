@@ -23,81 +23,77 @@ import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
 
 function Skills() {
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, threshold: 1 });
-  const [section3Color, setSection3Color] = useState("#597da8");
+    const ref = React.useRef(null);
+    const isInView = useInView(ref, { once: true, threshold: 1 });
+    const [section3Color, setSection3Color] = useState("#597da8");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const section4 = document.getElementById("Section4");
-      if (!section4) return;
-      const section4Rect = section4.getBoundingClientRect();
-      const triggerPoint = window.innerHeight / 1;
-      setSection3Color(
-        section4Rect.top <= triggerPoint && section4Rect.top > 0
-          ? "#f0f0f0"
-          : "#919191"
-      );
-    };
+    useEffect(() => {
+        const handleScroll = () => {
+            const section4 = document.getElementById("Section4");
+            if (!section4) return;
+            const section4Rect = section4.getBoundingClientRect();
+            const triggerPoint = window.innerHeight / 1;
+            setSection3Color(section4Rect.top <= triggerPoint && section4Rect.top > 0 ? "#f0f0f0" : "#969696");
+        };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
+        window.addEventListener("scroll", handleScroll);
+        handleScroll();
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-  return (
-    <Element name='Section3' id='Section3'>
-      <Width>
-        <Section3 ref={ref} $backgroundColor={section3Color}>
-          <h1>Skills</h1>
-          <motion.div
-            className='left'
-            variants={fadeInUpVariants}
-            initial='hidden'
-            animate={isInView ? "visible" : "hidden"}
-          >
-            <div className='front'>
-              <p>Front-end</p>
-              <img src={htmlImg} alt='HTML' />
-              <img src={cssImg} alt='CSS' />
-              <img src={jsImg} alt='JS' />
-              <img src={jqueryImg} alt='jquery' />
-              <img src={reactImg} alt='react' />
-              <img src={reduxImg} alt='redux' />
-              <img src={typescript} alt='typescript' />
-              <img src={styledImg} alt='styled-components' />
-              <img src={boot} alt='bootstrap' />
-            </div>
-          </motion.div>
+    return (
+        <Element name='Section3' id='Section3'>
+            <Width>
+                <Section3 ref={ref} $backgroundColor={section3Color}>
+                    <h1>Skills</h1>
+                    <motion.div
+                        className='left'
+                        variants={fadeInUpVariants}
+                        initial='hidden'
+                        animate={isInView ? "visible" : "hidden"}
+                    >
+                        <div className='front'>
+                            <p>Front-end</p>
+                            <img src={htmlImg} alt='HTML' />
+                            <img src={cssImg} alt='CSS' />
+                            <img src={jsImg} alt='JS' />
+                            <img src={jqueryImg} alt='jquery' />
+                            <img src={reactImg} alt='react' />
+                            <img src={reduxImg} alt='redux' />
+                            <img src={typescript} alt='typescript' />
+                            <img src={styledImg} alt='styled-components' />
+                            <img src={boot} alt='bootstrap' />
+                        </div>
+                    </motion.div>
 
-          <motion.div
-            className='right'
-            variants={fadeInUpVariants}
-            initial='hidden'
-            animate={isInView ? "visible" : "hidden"}
-          >
-            <div className='back'>
-              <p>Back-end</p>
-              <img src={nodeImg} alt='node.js' />
-            </div>
-            <div className='dev'>
-              <p>DevOps</p>
-              <img src={awsImg} alt='aws' />
-              <img src={mysql} alt='mysql' />
-            </div>
-            <div className='col'>
-              <p>Collaboration & Tools</p>
-              <img src={git} alt='git' />
-              <img src={github} alt='github' />
-              <img src={slack} alt='slack' />
-              <img src={figma} alt='figma' />
-            </div>
-          </motion.div>
-        </Section3>
-      </Width>
-    </Element>
-  );
+                    <motion.div
+                        className='right'
+                        variants={fadeInUpVariants}
+                        initial='hidden'
+                        animate={isInView ? "visible" : "hidden"}
+                    >
+                        <div className='back'>
+                            <p>Back-end</p>
+                            <img src={nodeImg} alt='node.js' />
+                        </div>
+                        <div className='dev'>
+                            <p>DevOps</p>
+                            <img src={awsImg} alt='aws' />
+                            <img src={mysql} alt='mysql' />
+                        </div>
+                        <div className='col'>
+                            <p>Collaboration & Tools</p>
+                            <img src={git} alt='git' />
+                            <img src={github} alt='github' />
+                            <img src={slack} alt='slack' />
+                            <img src={figma} alt='figma' />
+                        </div>
+                    </motion.div>
+                </Section3>
+            </Width>
+        </Element>
+    );
 }
 
 export default Skills;
