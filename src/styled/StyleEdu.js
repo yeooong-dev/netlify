@@ -11,12 +11,11 @@ const sequentialFadeIn = keyframes`
 
 export const Section4 = styled.div`
     position: relative;
-    width: 85%;
+    width: 100%;
     height: 1000px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${(props) => props.$backgroundColor || "#f0f0f0"};
     overflow-y: hidden;
 
     h1 {
@@ -89,7 +88,6 @@ export const Section4 = styled.div`
     }
 
     @media (max-width: 550px) {
-        width: 95%;
         b {
             font-size: 1rem;
         }

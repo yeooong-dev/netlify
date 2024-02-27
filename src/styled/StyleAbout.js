@@ -24,9 +24,7 @@ export const Section2 = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${(props) => props.backgroundColor || "#969696"};
     transition: background-color 0.5s step;
-    border-radius: 30px 30px 0 0;
 
     &.animate {
         .center {
@@ -65,6 +63,7 @@ export const Section2 = styled.div`
 
     @media (max-width: 800px) {
         .center {
+            width: 100%;
             height: 430px;
         }
     }

@@ -8,53 +8,50 @@ import Project from "./components/Project";
 import Header from "./components/Header";
 
 function App() {
-  const [translateY, setTranslateY] = useState(0);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [background, setBackground] = useState("linear-gradient(to right, #000, #222)");
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
+    useEffect(() => {
+        const handleScroll = () => {
+            const position = window.pageYOffset;
+            setScrollPosition(position);
+        };
 
-      if (scrollY <= 1080) {
-        setTranslateY(-scrollY);
-      } else {
-        setTranslateY(-1080);
-      }
-    };
+        window.addEventListener("scroll", handleScroll);
 
-    window.addEventListener("scroll", handleScroll);
+        const section4 = document.getElementById("Section3");
+        if (section4) {
+            const section4Top = section4.offsetTop;
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+            if (scrollPosition >= section4Top) {
+                setBackground("#f0f0f0");
+            } else {
+                setBackground("linear-gradient(to right, #000, #222)");
+            }
+        }
 
-  return (
-    <div
-      style={{
-        width: "100%",
-        margin: "0",
-        overflowX: "hidden",
-      }}
-    >
-      <Header />
-      <Main id='Section1' />
-      <div
-        id='AboutWrapper'
-        style={{
-          position: "absolute",
-          top: "1080px",
-          width: "100%",
-          transform: `translateY(${translateY}px)`,
-        }}
-      >
-        <About id='Section2' />
-        <Skills id='Section3' />
-        <Edu id='Section4' />
-        <Arch id='Section5' />
-        <Project id='Section6' />
-      </div>
-    </div>
-  );
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [scrollPosition]);
+
+    return (
+        <div
+            style={{
+                width: "100%",
+                margin: "0",
+                overflowX: "hidden",
+                background: background,
+                transition: "background 0.5s ease",
+            }}
+        >
+            <Header />
+            <Main id='Section1' />
+            <About id='Section2' />
+            <Skills id='Section3' />
+            <Edu id='Section4' />
+            <Arch id='Section5' />
+            <Project id='Section6' />
+        </div>
+    );
 }
 
 export default App;

@@ -7,25 +7,19 @@ const fadeInUpVariants = {
 };
 
 export const Section6 = styled.div`
-    width: 85%;
+    width: 100%;
     height: auto;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     background: #f0f0f0;
-    border-radius: 0 0 30px 30px;
-    padding-bottom: 50px;
 
     h1 {
         font-size: 3rem;
         font-family: var(--title-font);
         margin: 3rem;
         color: #2e2e2e;
-    }
-
-    @media (max-width: 550px) {
-        width: 95%;
     }
 
     @media (max-width: 600px) {

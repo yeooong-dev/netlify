@@ -25,7 +25,7 @@ import { motion } from "framer-motion";
 function Skills() {
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true, threshold: 1 });
-    const [section3Color, setSection3Color] = useState("#597da8");
+    const [section3Color, setSection3Color] = useState("none");
 
     useEffect(() => {
         const handleScroll = () => {
@@ -33,7 +33,7 @@ function Skills() {
             if (!section4) return;
             const section4Rect = section4.getBoundingClientRect();
             const triggerPoint = window.innerHeight / 1;
-            setSection3Color(section4Rect.top <= triggerPoint && section4Rect.top > 0 ? "#f0f0f0" : "#969696");
+            setSection3Color(section4Rect.top <= triggerPoint && section4Rect.top > 0 ? "#f0f0f0" : "none");
         };
 
         window.addEventListener("scroll", handleScroll);

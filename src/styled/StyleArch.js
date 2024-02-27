@@ -9,7 +9,7 @@ const fadeInUpVariants = {
 export const Section5 = styled.div`
     position: relative;
     top: 0;
-    width: 85%;
+    width: 100%;
     height: 800px;
     display: flex;
     align-items: center;
@@ -76,10 +76,6 @@ export const Section5 = styled.div`
                 opacity: 100%;
             }
         }
-    }
-
-    @media (max-width: 550px) {
-        width: 95%;
     }
 
     @media (max-width: 450px) {
