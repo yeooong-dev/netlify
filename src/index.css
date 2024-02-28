@@ -1,49 +1,50 @@
 * {
-    margin: 0;
-    padding: 0;
-    border: none;
-    text-decoration: none;
-    overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  overflow-x: hidden;
 }
 
 body {
-    width: 100%;
-    font-family: "SUITE-Regular";
-    background: #000000;
-    background: -webkit-linear-gradient(to right, #434343, #000000); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #434343, #000000);
+  width: 100%;
+  font-family: "SUITE-Regular";
 }
 
 @font-face {
-    font-family: "ghanachoco";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
+  font-family: "ghanachoco";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ghanachoco.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "ACCchildrenfall";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112-2@1.0/ACCchildrenfall.woff") format("woff");
-    font-weight: normal;
-    font-style: normal;
+  font-family: "ACCchildrenfall";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112-2@1.0/ACCchildrenfall.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "SUITE-Regular";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
+  font-family: "SUITE-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "TheJamsil5Bold";
-    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2") format("woff2");
-    font-weight: 700;
-    font-style: normal;
+  font-family: "TheJamsil5Bold";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-style: normal;
 }
 
 :root {
-    --title-font: "ghanachoco";
-    --sub-font: "ACCchildrenfall";
-    --bold: "TheJamsil5Bold";
+  --title-font: "ghanachoco";
+  --sub-font: "ACCchildrenfall";
+  --bold: "TheJamsil5Bold";
 }
