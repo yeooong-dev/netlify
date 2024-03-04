@@ -1,5 +1,57 @@
 import { styled, keyframes, css } from "styled-components";
 
+const shapeChangeAndRotate = keyframes`
+  0%, 100% {
+    transform: rotate(0deg);
+    border-radius: 50%;
+  }
+  25% {
+    border-radius: 0%; 
+  }
+  50% {
+    transform: rotate(180deg);
+    border-radius: 50%; 
+  }
+  75% {
+    border-radius: 0%; 
+  }
+  100% {
+    transform: rotate(360deg);
+    border-radius: 50%; 
+  }
+`;
+
+const twinkling = keyframes`
+  0% {
+    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.1);
+  }
+`;
+
+const twinklingWithNoBoxShadow = keyframes`
+  0% {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 1);
+  }
+  20% {
+    background-color: #ffc4c4;
+    box-shadow: 0 0 10px 0px rgba(255, 196, 196, 1);
+  }
+  80% {
+    background-color: #c4cfff;
+    box-shadow: 0 0 10px 0px rgba(196, 207, 255, 1);
+  }
+  100% {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px 0px rgba(255, 255, 255, 0.2);
+  }
+`;
+
 export const Section1 = styled.div`
   width: 100%;
   height: 100vh;
@@ -7,6 +59,34 @@ export const Section1 = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+`;
+
+export const Star = styled.div`
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  overflow: hidden;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  ${(props) =>
+    props.size &&
+    css`
+      width: ${props.size}px;
+      height: ${props.size}px;
+    `}
+  ${(props) =>
+    props.opacity &&
+    css`
+      opacity: ${props.opacity};
+    `}
+  ${(props) =>
+    props.animation &&
+    css`
+      animation-name: ${props.animation === "twinklingWithNoBoxShadow"
+        ? twinklingWithNoBoxShadow
+        : twinkling};
+      animation-duration: ${props.duration}s;
+    `}
 `;
 
 export const Head = styled.div`
@@ -129,22 +209,12 @@ export const Center = styled.div`
   position: relative;
 
   .shape {
-    width: 800px;
-    height: 800px;
-    transition: transform 30s, border-radius 3s;
-    transform: rotate(0deg);
+    width: 500px;
+    height: 500px;
+    animation: ${shapeChangeAndRotate} 15s linear infinite;
     border: 2px solid #969696;
-    opacity: 60%;
+    opacity: 20%;
     z-index: 0;
-  }
-
-  .circle {
-    border-radius: 50%;
-  }
-
-  .square {
-    border-radius: 10px;
-    transform: rotate(360deg);
   }
 
   @media (max-width: 1200px) {
@@ -199,6 +269,7 @@ export const TextBox = styled.div`
   justify-content: center;
   flex-direction: column;
   position: absolute;
+  gap: 30px;
 
   h1 {
     font-family: var(--title-font);
@@ -210,10 +281,8 @@ export const TextBox = styled.div`
 
   span {
     font-size: 1.5rem;
-    margin: 0px;
     font-family: var(--sub-font);
     color: #f1f1f1;
-    margin: 40px;
   }
 
   div {
@@ -223,8 +292,8 @@ export const TextBox = styled.div`
     background: none;
     border: 2px solid #969696;
     border-radius: 30px;
-    margin-top: 30px;
     text-align: center;
+    margin-top: 30px;
 
     button {
       font-size: 2rem;
@@ -233,19 +302,19 @@ export const TextBox = styled.div`
       cursor: pointer;
     }
 
-    button:hover {
-      background: #f1f1f1;
-      color: #2e2e2e;
-      transition: 0.4s;
-      opacity: 80%;
-    }
-
     .animated-circle {
       position: relative;
       animation: ${css`
         ${bounce} 5s infinite
       `};
     }
+  }
+
+  div:hover {
+    background: #f1f1f1;
+    color: #2e2e2e;
+    transition: 0.4s;
+    opacity: 80%;
   }
 
   @media (max-width: 850px) {
@@ -277,6 +346,11 @@ export const TextBox = styled.div`
         opacity: 100%;
       }
     }
+    div:hover {
+      background: none;
+      color: #f1f1f1;
+      opacity: 100%;
+    }
   }
 
   @media (max-width: 550px) {
@@ -285,7 +359,6 @@ export const TextBox = styled.div`
     }
     span {
       font-size: 1.2rem;
-      margin: 30px;
     }
   }
 
@@ -295,7 +368,6 @@ export const TextBox = styled.div`
     }
     span {
       font-size: 1rem;
-      margin-top: 20px;
     }
 
     button {
