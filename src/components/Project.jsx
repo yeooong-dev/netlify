@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Element } from "react-scroll";
 import port from "../img/port.png";
 import mood from "../img/mood.png";
@@ -6,10 +6,14 @@ import seoulcon from "../img/seoulcon.png";
 import insta from "../img/insta.png";
 import { Width } from "../styled/StyleAbout";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, useTransform, useViewportScroll } from "framer-motion";
 
 function Project() {
-  // 슬라이드
+  const ref = useRef(null);
+  const [isActive, setIsActive] = useState(false);
+  const { scrollY } = useViewportScroll();
+  const [startOffset, setStartOffset] = useState(0);
+  const [endOffset, setEndOffset] = useState(0);
   const [activeSlide, setActiveSlide] = useState(0);
   const slides = [
     {
@@ -60,23 +64,99 @@ function Project() {
   ];
   const slideWidth = 100;
 
-  const nextSlide = () => {
-    if (activeSlide < slides.length - 1) {
-      setActiveSlide((prev) => prev + 1);
+  useEffect(() => {
+    if (ref.current) {
+      const updateOffsets = () => {
+        const rect = ref.current.getBoundingClientRect();
+        setStartOffset(window.pageYOffset + rect.top);
+        setEndOffset(window.pageYOffset + rect.top + rect.height);
+      };
+
+      window.addEventListener("resize", updateOffsets);
+      updateOffsets();
+
+      return () => window.removeEventListener("resize", updateOffsets);
     }
+  }, [ref]);
+
+  const x = useTransform(
+    scrollY,
+    [startOffset, endOffset],
+    ["0%", `${-100 * (slides.length - 1)}%`]
+  );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const rect = ref.current.getBoundingClientRect();
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      const offsetTop = rect.top + scrollTop;
+
+      setStartOffset(offsetTop);
+      setEndOffset(offsetTop + rect.height);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (scrollY.get() >= startOffset && scrollY.get() <= endOffset) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [scrollY, startOffset, endOffset]);
+
+  const nextSlide = () => {
+    setActiveSlide((prevSlide) => Math.min(prevSlide + 1, slides.length - 1));
   };
 
   const prevSlide = () => {
-    if (activeSlide > 0) {
-      setActiveSlide((prev) => prev - 1);
-    }
+    setActiveSlide((prevSlide) => Math.max(prevSlide - 1, 0));
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const shouldActivateHorizontalScroll = window.scrollY >= endOffset;
+      setIsActive(shouldActivateHorizontalScroll);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [endOffset]);
+
+  useEffect(() => {
+    if (!isActive) return;
+
+    let lastScrollLeft = window.pageXOffset;
+    const slowHorizontalScroll = () => {
+      requestAnimationFrame(() => {
+        const currentScrollLeft = window.pageXOffset;
+        const diffX = currentScrollLeft - lastScrollLeft;
+        if (Math.abs(diffX) > 1) {
+          window.scrollTo({
+            top: 0,
+            left: lastScrollLeft + diffX / 50,
+            behavior: "smooth",
+          });
+          lastScrollLeft += diffX / 50;
+          slowHorizontalScroll();
+        }
+      });
+    };
+
+    window.addEventListener("scroll", slowHorizontalScroll, { passive: true });
+    return () => window.removeEventListener("scroll", slowHorizontalScroll);
+  }, [isActive]);
 
   return (
     <>
       <Element name='Section6' id='Section6'>
         <Width>
-          <Section6>
+          <Section6 ref={ref}>
             <h1>Projects</h1>
             <div className='slideBtn'>
               <button onClick={prevSlide} className='prev'>
@@ -87,7 +167,13 @@ function Project() {
               </button>
             </div>
 
-            <SlidesContainer>
+            <SlidesContainer
+              as={motion.div}
+              style={{ x }}
+              drag='x'
+              dragConstraints={{ left: -100 * (slides.length - 1), right: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
               {slides.map((slide, index) => (
                 <Slide
                   key={index}
@@ -206,14 +292,19 @@ const Section6 = styled.div`
 
 const SlidesContainer = styled.div`
   display: flex;
-  overflow: hidden;
+  overflow: visible;
   padding: 0 calc((100% - slideWidth * visibleSlides) / 2);
   width: 100%;
-  margin-left: 50%;
+  margin-left: 70%;
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
 `;
 
 const Slide = styled.div`
-  min-width: 50%;
+  min-width: 30%;
   transition: transform 0.5s ease-in-out;
   display: flex;
   align-items: center;
@@ -225,8 +316,8 @@ const Con = styled(motion.div).attrs((props) => ({
   initial: "hidden",
   animate: props.animate ? "visible" : "hidden",
 }))`
-  width: 80%;
-  height: 900px;
+  width: 90%;
+  height: 850px;
   display: flex;
   align-items: center;
   justify-content: center;
