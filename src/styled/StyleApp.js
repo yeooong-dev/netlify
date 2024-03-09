@@ -390,7 +390,7 @@ export const TopBtn = styled.button`
   border: 3px solid #e39c40;
   cursor: pointer;
   color: #e39c40;
-  z-index: 99;
+  z-index: 999;
 
   &:hover {
     opacity: 50%;

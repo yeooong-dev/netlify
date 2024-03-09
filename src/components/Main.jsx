@@ -78,7 +78,7 @@ function Main() {
 
     const generateStars = () => {
       const stars = [];
-      const starCount = 30; // 생성할 별의 개수
+      const starCount = 40; // 생성할 별의 개수
       for (let i = 0; i < starCount; i++) {
         const size = getRandomValue(3) + 1;
         const opacity = getRandomValue(3) + 0.5;
