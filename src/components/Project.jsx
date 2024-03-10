@@ -10,7 +10,6 @@ import { motion, useTransform, useViewportScroll } from "framer-motion";
 
 function Project() {
   const ref = useRef(null);
-  const [isActive, setIsActive] = useState(false);
   const { scrollY } = useViewportScroll();
   const [startOffset, setStartOffset] = useState(0);
   const [endOffset, setEndOffset] = useState(0);
@@ -64,26 +63,27 @@ function Project() {
   ];
   const slideWidth = 100;
 
-  useEffect(() => {
-    if (ref.current) {
-      const updateOffsets = () => {
-        const rect = ref.current.getBoundingClientRect();
-        setStartOffset(window.pageYOffset + rect.top);
-        setEndOffset(window.pageYOffset + rect.top + rect.height);
-      };
-
-      window.addEventListener("resize", updateOffsets);
-      updateOffsets();
-
-      return () => window.removeEventListener("resize", updateOffsets);
-    }
-  }, [ref]);
-
-  const x = useTransform(
+  const horizontalScrollPosition = useTransform(
     scrollY,
     [startOffset, endOffset],
     ["0%", `${-100 * (slides.length - 1)}%`]
   );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      if (scrollPosition >= startOffset && scrollPosition <= endOffset) {
+        // 가로 스크롤 섹션 내부에 있을 때
+        document.body.style.position = "sticky";
+      } else {
+        // 가로 스크롤 섹션 외부에 있을 때
+        document.body.style.position = "sticky";
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [startOffset, endOffset]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,74 +102,19 @@ function Project() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (scrollY.get() >= startOffset && scrollY.get() <= endOffset) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  }, [scrollY, startOffset, endOffset]);
-
-  const nextSlide = () => {
-    setActiveSlide((prevSlide) => Math.min(prevSlide + 1, slides.length - 1));
-  };
-
   const prevSlide = () => {
     setActiveSlide((prevSlide) => Math.max(prevSlide - 1, 0));
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const shouldActivateHorizontalScroll = window.scrollY >= endOffset;
-      setIsActive(shouldActivateHorizontalScroll);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [endOffset]);
-
-  useEffect(() => {
-    if (!isActive) return;
-
-    let lastScrollLeft = window.pageXOffset;
-    const slowHorizontalScroll = () => {
-      requestAnimationFrame(() => {
-        const currentScrollLeft = window.pageXOffset;
-        const diffX = currentScrollLeft - lastScrollLeft;
-        if (Math.abs(diffX) > 1) {
-          window.scrollTo({
-            top: 0,
-            left: lastScrollLeft + diffX / 50,
-            behavior: "smooth",
-          });
-          lastScrollLeft += diffX / 50;
-          slowHorizontalScroll();
-        }
-      });
-    };
-
-    window.addEventListener("scroll", slowHorizontalScroll, { passive: true });
-    return () => window.removeEventListener("scroll", slowHorizontalScroll);
-  }, [isActive]);
-
-  useEffect(() => {
-    const handleScroll = (event) => {
-      if (!isActive) return; // 가로 스크롤 섹션이 활성화되지 않았다면 아무것도 하지 않음
-
-      // 가로 스크롤 섹션 내에서만 작동
-      if (window.scrollY >= startOffset && window.scrollY <= endOffset) {
-        event.preventDefault(); // 기본 스크롤 동작 방지
-
-        // 현재 스크롤 위치에 따른 가로 스크롤 위치 계산
-        const scrollAmount = event.deltaY; // 이 값을 기준으로 가로 스크롤 양 조정 가능
-        ref.current.scrollLeft += scrollAmount; // 세로 스크롤 양을 가로 스크롤로 적용
+  const nextSlide = () => {
+    setActiveSlide((prevSlide) => {
+      const isLastSlide = prevSlide + 1 === slides.length;
+      if (isLastSlide) {
+        document.body.style.overflow = "auto";
       }
-    };
-
-    window.addEventListener("wheel", handleScroll, { passive: false });
-
-    return () => window.removeEventListener("wheel", handleScroll);
-  }, [isActive, startOffset, endOffset]); // 의존성 배열에는 isActive, startOffset, endOffset 포함
+      return Math.min(prevSlide + 1, slides.length - 1);
+    });
+  };
 
   return (
     <>
@@ -188,7 +133,7 @@ function Project() {
 
             <SlidesContainer
               as={motion.div}
-              style={{ x }}
+              style={{ x: horizontalScrollPosition }}
               drag='x'
               dragConstraints={{ left: -100 * (slides.length - 1), right: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
@@ -369,6 +314,19 @@ const Slide = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: sticky;
+  overflow: hidden;
+  top: 0;
+
+  .motion-progress {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    height: 4px;
+    top: 0;
+    left: 0;
+    background: #424242;
+  }
 
   @media (max-width: 1300px) {
     min-width: 50%;
