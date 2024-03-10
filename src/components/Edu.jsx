@@ -40,7 +40,7 @@ function Edu() {
   }, [showAnimation]);
 
   return (
-    <Element name='Section4' id='Section4'>
+    <Element name='Section5' id='Section5'>
       <Width>
         <Section4 ref={ref}>
           <h1>Profile</h1>

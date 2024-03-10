@@ -72,16 +72,16 @@ export const Section2 = styled.div`
     width: 95%;
     .center {
       width: 90%;
-      height: 260px;
+      height: 250px;
 
       hr {
-        margin: 10px auto;
+        margin: 15px auto;
       }
 
       .inner {
         font-size: 14px;
         white-space: normal;
-        margin: 15px auto;
+        margin: 10px auto;
       }
     }
   }

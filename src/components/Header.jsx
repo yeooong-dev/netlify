@@ -16,6 +16,7 @@ function Header() {
     "Section4",
     "Section5",
     "Section6",
+    "Section7",
   ];
 
   const menuMap = {
@@ -25,6 +26,7 @@ function Header() {
     Section4: "edu",
     Section5: "arch",
     Section6: "projects",
+    Section7: "Contact",
   };
 
   useEffect(() => {
@@ -111,6 +113,16 @@ function Header() {
               onClick={() => handleMenuClick("projects")}
             >
               Projects
+            </Link>
+          </li>
+          <li className={activeMenu === "Contact" ? "active" : ""}>
+            <Link
+              to='Section7'
+              smooth={true}
+              duration={1200}
+              onClick={() => handleMenuClick("Contact")}
+            >
+              Contact
             </Link>
           </li>
         </ul>

@@ -9,7 +9,7 @@ function Arch() {
   const isInView = useInView(ref, { once: true, threshold: 100 });
 
   return (
-    <Element name='Section5' id='Section5'>
+    <Element name='Section4' id='Section4'>
       <Width>
         <Section5 ref={ref}>
           <h1>Archiving</h1>

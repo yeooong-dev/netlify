@@ -6,6 +6,7 @@ import Edu from "./components/Edu";
 import Arch from "./components/Arch";
 import Project from "./components/Project";
 import Header from "./components/Header";
+import Contact from "./components/Contact";
 
 function App() {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -47,9 +48,10 @@ function App() {
       <Main id='Section1' />
       <About id='Section2' />
       <Skills id='Section3' />
-      <Edu id='Section4' />
-      <Arch id='Section5' />
+      <Arch id='Section4' />
+      <Edu id='Section5' />
       <Project id='Section6' />
+      <Contact id='Section7' />
     </div>
   );
 }

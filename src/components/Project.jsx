@@ -152,6 +152,25 @@ function Project() {
     return () => window.removeEventListener("scroll", slowHorizontalScroll);
   }, [isActive]);
 
+  useEffect(() => {
+    const handleScroll = (event) => {
+      if (!isActive) return; // 가로 스크롤 섹션이 활성화되지 않았다면 아무것도 하지 않음
+
+      // 가로 스크롤 섹션 내에서만 작동
+      if (window.scrollY >= startOffset && window.scrollY <= endOffset) {
+        event.preventDefault(); // 기본 스크롤 동작 방지
+
+        // 현재 스크롤 위치에 따른 가로 스크롤 위치 계산
+        const scrollAmount = event.deltaY; // 이 값을 기준으로 가로 스크롤 양 조정 가능
+        ref.current.scrollLeft += scrollAmount; // 세로 스크롤 양을 가로 스크롤로 적용
+      }
+    };
+
+    window.addEventListener("wheel", handleScroll, { passive: false });
+
+    return () => window.removeEventListener("wheel", handleScroll);
+  }, [isActive, startOffset, endOffset]); // 의존성 배열에는 isActive, startOffset, endOffset 포함
+
   return (
     <>
       <Element name='Section6' id='Section6'>
@@ -218,7 +237,6 @@ function Project() {
             </SlidesContainer>
           </Section6>
         </Width>
-        <Margin />
       </Element>
     </>
   );
@@ -240,27 +258,28 @@ const Section6 = styled.div`
   justify-content: center;
   background: #f0f0f0;
   z-index: 99;
+  margin: 100px 0;
 
   h1 {
-    font-size: 3rem;
+    font-size: 2rem;
     font-family: var(--title-font);
-    margin: 30px;
     color: #2e2e2e;
+    margin-bottom: 20px;
   }
 
   .slideBtn {
-    width: 50%;
-    height: 80px;
+    width: 40%;
+    height: 100px;
     display: flex;
     justify-content: flex-end;
     gap: 20px;
-    padding: 10px;
+    padding-right: 50px;
 
     .prev {
       width: 45px;
       height: 45px;
-      border: 2px solid #6e6e6e;
-      color: #6e6e6e;
+      border: 2px solid #d0d0d0;
+      color: #d0d0d0;
       border-radius: 50%;
       font-size: 2rem;
       cursor: pointer;
@@ -272,14 +291,39 @@ const Section6 = styled.div`
     .next {
       width: 45px;
       height: 45px;
-      border: 2px solid #6e6e6e;
-      color: #6e6e6e;
+      border: 2px solid #d0d0d0;
+      color: #d0d0d0;
       border-radius: 50%;
       font-size: 2rem;
       cursor: pointer;
       box-shadow: 5px 5px 5px -2px rgba(166, 166, 166, 0.57);
       -webkit-box-shadow: 5px 5px 5px -2px rgba(166, 166, 166, 0.57);
       -moz-box-shadow: 5px 5px 5px -2px rgba(166, 166, 166, 0.57);
+    }
+  }
+
+  @media (max-width: 1300px) {
+    .slideBtn {
+      width: 60%;
+      height: 80px;
+    }
+  }
+
+  @media (max-width: 800px) {
+    .slideBtn {
+      height: 60px;
+
+      .prev {
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+      }
+
+      .next {
+        width: 35px;
+        height: 35px;
+        font-size: 1.5rem;
+      }
     }
   }
 
@@ -295,20 +339,52 @@ const SlidesContainer = styled.div`
   overflow: visible;
   padding: 0 calc((100% - slideWidth * visibleSlides) / 2);
   width: 100%;
-  margin-left: 70%;
+  margin-left: 60%;
   cursor: grab;
 
   &:active {
     cursor: grabbing;
   }
+
+  @media (max-width: 1300px) {
+    margin-left: 50%;
+  }
+
+  @media (max-width: 1000px) {
+    margin-left: 40%;
+  }
+
+  @media (max-width: 700px) {
+    margin-left: 30%;
+  }
+
+  @media (max-width: 550px) {
+    margin-left: 25%;
+  }
 `;
 
 const Slide = styled.div`
-  min-width: 30%;
+  min-width: 40%;
   transition: transform 0.5s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 1300px) {
+    min-width: 50%;
+  }
+
+  @media (max-width: 1000px) {
+    min-width: 60%;
+  }
+
+  @media (max-width: 700px) {
+    min-width: 70%;
+  }
+
+  @media (max-width: 550px) {
+    min-width: 75%;
+  }
 `;
 
 const Con = styled(motion.div).attrs((props) => ({
@@ -317,7 +393,7 @@ const Con = styled(motion.div).attrs((props) => ({
   animate: props.animate ? "visible" : "hidden",
 }))`
   width: 90%;
-  height: 850px;
+  height: 780px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -380,35 +456,25 @@ const Con = styled(motion.div).attrs((props) => ({
     margin-bottom: 15px;
   }
 
-  @media (max-width: 1300px) {
-    width: 83%;
-    height: 900px;
-  }
-
-  @media (max-width: 800px) {
-    height: 800px;
-
-    h3 {
-      font-size: 2rem;
-    }
+  @media (max-width: 1000px) {
+    height: 700px;
   }
 
   @media (max-width: 550px) {
-    width: 90%;
-    height: 700px;
+    height: 650px;
 
     h3 {
-      font-size: 20px;
+      font-size: 2rem;
+      margin-bottom: 5px;
     }
 
     a {
       font-size: 14px;
-      line-height: 1.5rem;
+      line-height: 25px;
     }
 
     a:hover {
       opacity: 100%;
-      transition: 0.3s;
     }
 
     .team {
@@ -417,35 +483,25 @@ const Con = styled(motion.div).attrs((props) => ({
     }
 
     img {
-      width: 90%;
-      margin-bottom: 20px;
-    }
-
-    .right {
-      width: 80%;
-      text-align: center;
+      margin-bottom: 10px;
     }
 
     .ment {
-      line-height: 1.6rem;
       font-size: 14px;
+      line-height: 1.7rem;
+      margin-bottom: 10px;
     }
 
     .skills {
       font-size: 14px;
-      line-height: 1.6rem;
-      margin-bottom: 15px;
+      line-height: 1.7rem;
+      margin-bottom: 10px;
     }
 
     .front {
       font-size: 14px;
-      line-height: 1.6em;
-      margin-bottom: 15px;
+      line-height: 1.7rem;
+      margin-bottom: 10px;
     }
   }
-`;
-
-const Margin = styled.div`
-  width: 100%;
-  height: 200px;
 `;

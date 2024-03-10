@@ -173,7 +173,7 @@ export const Head = styled.div`
 
   @media (max-width: 530px) {
     li {
-      font-size: 12px;
+      font-size: 10px;
     }
   }
 
