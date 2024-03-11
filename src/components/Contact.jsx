@@ -128,6 +128,7 @@ function Contact() {
 export default Contact;
 
 const Section7 = styled.div`
+  position: relative;
   width: 100%;
   height: auto;
   display: flex;

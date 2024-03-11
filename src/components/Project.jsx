@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Element } from "react-scroll";
 import port from "../img/port.png";
 import mood from "../img/mood.png";
@@ -6,101 +6,67 @@ import seoulcon from "../img/seoulcon.png";
 import insta from "../img/insta.png";
 import { Width } from "../styled/StyleAbout";
 import styled from "styled-components";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
+import { motion } from "framer-motion";
+
+const slides = [
+  {
+    img: port,
+    title: "PORT",
+    team: "(개인프로젝트)",
+    description:
+      "PORT는 일정 관리 및 채팅 기능을 갖춘 업무용 협업 툴입니다. React와 Node.js를 활용하여 클라이언트와 서버를 전체적으로 구현했으며, 이를 통해 조금 더 깊게 이해할 수 있었습니다.",
+    skills: "주요 기능 : 로그인, CRUD, 검색 기능, 채팅 기능, 다크모드 등",
+    front: "Front-end : TypeScript, styled-components, React-Query",
+    back: "Back-end : TypeScript, MySQL, Socket.IO",
+    feLink: "https://github.com/yeooong-dev/FE-PORT",
+    beLink: "https://github.com/yeooong-dev/BE-PORT",
+    notionLink: "https://www.notion.so/PORT-2d4b3563c5954497bf39f77637d8ba07",
+    siteLink: "https://port-six-theta.vercel.app/",
+  },
+  {
+    img: mood,
+    title: "MOOD",
+    team: "(팀프로젝트)",
+    description:
+      "MOOD 사이트는 사용자의 현재 기분을 선택하면 그에 맞는 클래식 음악을 추천하여 치유를 해주며, 같은 감정을 느끼는 사용자들끼리 서로 공감하게 만드는 사이트입니다.",
+    skills:
+      "맡은 기능 : 검색 기능, 좋아요∙스크랩 기능, 작곡가별 음악 추천 기능, 좋아요∙스트리밍 순 실시간 차트 기능, 음악 상세페이지(댓글, 대댓글) 기능",
+    front: "Front-end : TypeScript, styled-components, React-Query, Redux",
+    feLink: "https://github.com/MOOD-classic/FE-MOOD",
+    notionLink: "https://www.notion.so/MOOD-f0f722a676194a7eb532e1be615f93c8",
+  },
+  {
+    img: seoulcon,
+    title: "SEOULCon",
+    team: "(팀프로젝트)",
+    description:
+      "SEOULCon은 전 세계 5억 명이 시청하고, 총합 팔로워 30억의 글로벌 셀럽 3,000팀이 현장에서 함께 즐기는 서울콘입니다. 외주 프로젝트로 참여하여 실제 협업 경험을 쌓았습니다.",
+    skills: "역할 : 웹사이트의 퍼블리싱을 담당",
+    front: "Front-end : TypeScript, styled-components",
+    feLink: "https://github.com/ysdls/seoul-front",
+    siteLink: "https://www.seoul-con.com/ko",
+  },
+  {
+    img: insta,
+    title: "Instagram",
+    team: "(팀프로젝트)",
+    description:
+      "중요한 기능들은 다 담겨있는 인스타그램, 실제로 많은 사용자가 있는 서비스를 직접 내 손으로 한 땀 한 땀 만들어가는 것만큼 빠르고 효과적인 학습은 없을 것 같아서 클론 코딩을 해봤습니다.",
+    skills:
+      "맡은 기능 : 회원가입 validation 기능, 로그인∙로그아웃 기능, 카카오로그인 기능",
+    front: "Front-end : styled-components, React-Query",
+    feLink: "https://github.com/orgs/hanghaeClone3team/repositories",
+    notionLink:
+      "https://www.notion.so/Instagram-420e817ea5f549b38e07814d1bd4e5e1",
+  },
+];
 
 function Project() {
   const ref = useRef(null);
-  const { scrollY } = useViewportScroll();
-  const [startOffset, setStartOffset] = useState(0);
-  const [endOffset, setEndOffset] = useState(0);
+
   const [activeSlide, setActiveSlide] = useState(0);
-  const slides = [
-    {
-      img: port,
-      title: "PORT",
-      team: "(개인프로젝트)",
-      description:
-        "PORT는 일정 관리 및 채팅 기능을 갖춘 업무용 협업 툴입니다. React와 Node.js를 활용하여 클라이언트와 서버를 전체적으로 구현했으며, 이를 통해 조금 더 깊게 이해할 수 있었습니다.",
-      skills: "주요 기능 : 로그인, CRUD, 검색 기능, 채팅 기능, 다크모드 등",
-      front: "Front-end : TypeScript, styled-components, React-Query",
-      back: "Back-end : TypeScript, MySQL, Socket.IO",
-      feLink: "https://github.com/yeooong-dev/FE-PORT",
-      beLink: "https://github.com/yeooong-dev/BE-PORT",
-      siteLink: "https://port-six-theta.vercel.app/",
-    },
-    {
-      img: mood,
-      title: "MOOD",
-      team: "(팀프로젝트)",
-      description:
-        "MOOD 사이트는 사용자의 현재 기분을 선택하면 그에 맞는 클래식 음악을 추천하여 치유를 해주며, 같은 감정을 느끼는 사용자들끼리 서로 공감하게 만드는 사이트입니다.",
-      skills:
-        "맡은 기능 : 검색 기능, 좋아요∙스크랩 기능, 작곡가별 음악 추천 기능, 좋아요∙스트리밍 순 실시간 차트 기능, 음악 상세페이지(댓글, 대댓글) 기능",
-      front: "Front-end : TypeScript, styled-components, React-Query, Redux",
-      feLink: "https://github.com/MOOD-classic/FE-MOOD",
-    },
-    {
-      img: seoulcon,
-      title: "SEOULCon",
-      team: "(팀프로젝트)",
-      description:
-        "SEOULCon은 전 세계 5억 명이 시청하고, 총합 팔로워 30억의 글로벌 셀럽 3,000팀이 현장에서 함께 즐기는 서울콘입니다. 외주 프로젝트로 참여하여 실제 협업 경험을 쌓았습니다.",
-      skills: "역할 : 웹사이트의 퍼블리싱을 담당",
-      front: "Front-end : TypeScript, styled-components",
-      siteLink: "https://www.seoul-con.com/ko",
-    },
-    {
-      img: insta,
-      title: "Instagram",
-      team: "(팀프로젝트)",
-      description:
-        "중요한 기능들은 다 담겨있는 인스타그램, 실제로 많은 사용자가 있는 서비스를 직접 내 손으로 한 땀 한 땀 만들어가는 것만큼 빠르고 효과적인 학습은 없을 것 같아서 클론 코딩을 해봤습니다.",
-      skills:
-        "맡은 기능 : 회원가입 validation 기능, 로그인∙로그아웃 기능, 카카오로그인 기능",
-      front: "Front-end : styled-components, React-Query",
-      feLink: "https://github.com/orgs/hanghaeClone3team/repositories",
-    },
-  ];
+
   const slideWidth = 100;
-
-  const horizontalScrollPosition = useTransform(
-    scrollY,
-    [startOffset, endOffset],
-    ["0%", `${-100 * (slides.length - 1)}%`]
-  );
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      if (scrollPosition >= startOffset && scrollPosition <= endOffset) {
-        // 가로 스크롤 섹션 내부에 있을 때
-        document.body.style.position = "sticky";
-      } else {
-        // 가로 스크롤 섹션 외부에 있을 때
-        document.body.style.position = "sticky";
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [startOffset, endOffset]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const rect = ref.current.getBoundingClientRect();
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const offsetTop = rect.top + scrollTop;
-
-      setStartOffset(offsetTop);
-      setEndOffset(offsetTop + rect.height);
-    };
-
-    handleScroll();
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const prevSlide = () => {
     setActiveSlide((prevSlide) => Math.max(prevSlide - 1, 0));
@@ -108,10 +74,6 @@ function Project() {
 
   const nextSlide = () => {
     setActiveSlide((prevSlide) => {
-      const isLastSlide = prevSlide + 1 === slides.length;
-      if (isLastSlide) {
-        document.body.style.overflow = "auto";
-      }
       return Math.min(prevSlide + 1, slides.length - 1);
     });
   };
@@ -133,7 +95,6 @@ function Project() {
 
             <SlidesContainer
               as={motion.div}
-              style={{ x: horizontalScrollPosition }}
               drag='x'
               dragConstraints={{ left: -100 * (slides.length - 1), right: 0 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
@@ -149,33 +110,42 @@ function Project() {
                     <h3>{slide.title}</h3>
                     <p className='team'>{slide.team}</p>
                     <img src={slide.img} alt={slide.title} />
-                    <div className='right'>
-                      <p className='ment'>{slide.description}</p>
-                      <hr />
-                      <p className='skills'>{slide.skills}</p>
-                      <p className='front'>{slide.front}</p>
-                      {slide.feLink && (
-                        <a href={slide.feLink} target='_blank' rel='noreferrer'>
-                          Front-end 코드 보기
-                        </a>
-                      )}
-                      <br />
-                      {slide.beLink && (
-                        <a href={slide.beLink} target='_blank' rel='noreferrer'>
-                          Back-end 코드 보기
-                        </a>
-                      )}
-                      {slide.siteLink && (
-                        <a
-                          href={slide.siteLink}
-                          target='_blank'
-                          rel='noreferrer'
-                          style={{ display: "block", marginTop: "10px" }}
-                        >
-                          사이트 방문하기
-                        </a>
-                      )}
-                    </div>
+
+                    <p className='ment'>{slide.description}</p>
+                    <p className='skills'>{slide.skills}</p>
+                    <p className='front'>{slide.front}</p>
+                    {slide.feLink && (
+                      <a href={slide.feLink} target='_blank' rel='noreferrer'>
+                        Front-end 코드 보기
+                      </a>
+                    )}
+                    {slide.beLink && (
+                      <a href={slide.beLink} target='_blank' rel='noreferrer'>
+                        Back-end 코드 보기
+                      </a>
+                    )}
+                    {slide.notionLink && (
+                      <a
+                        href={slide.notionLink}
+                        target='_blank'
+                        rel='noreferrer'
+                      >
+                        Notion 보기
+                      </a>
+                    )}
+                    {slide.siteLink && (
+                      <a
+                        href={slide.siteLink}
+                        target='_blank'
+                        rel='noreferrer'
+                        style={{
+                          fontWeight: "bold",
+                          color: "#d19028",
+                        }}
+                      >
+                        사이트 방문하기
+                      </a>
+                    )}
                   </Con>
                 </Slide>
               ))}
@@ -209,16 +179,16 @@ const Section6 = styled.div`
     font-size: 2rem;
     font-family: var(--title-font);
     color: #2e2e2e;
-    margin-bottom: 20px;
   }
 
   .slideBtn {
-    width: 40%;
+    width: 100%;
     height: 100px;
     display: flex;
-    justify-content: flex-end;
-    gap: 20px;
-    padding-right: 50px;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 10px;
 
     .prev {
       width: 45px;
@@ -359,6 +329,7 @@ const Con = styled(motion.div).attrs((props) => ({
   background: #f6f6f6;
   margin-bottom: 50px;
   border-radius: 25px;
+  text-align: center;
   box-shadow: 8px 8px 6px 2px rgba(94, 94, 94, 0.13);
   -webkit-box-shadow: 8px 8px 6px 2px rgba(94, 94, 94, 0.13);
   -moz-box-shadow: 8px 8px 6px 2px rgba(94, 94, 94, 0.13);
@@ -376,7 +347,7 @@ const Con = styled(motion.div).attrs((props) => ({
     text-decoration: none;
     color: #dba058;
     font-size: 1rem;
-    line-height: 25px;
+    line-height: 30px;
   }
 
   a:hover {
@@ -395,12 +366,8 @@ const Con = styled(motion.div).attrs((props) => ({
     margin-bottom: 20px;
   }
 
-  .right {
-    width: 80%;
-    text-align: center;
-  }
-
   .ment {
+    width: 80%;
     line-height: 1.8rem;
   }
 

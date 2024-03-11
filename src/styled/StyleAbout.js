@@ -25,6 +25,7 @@ export const Section2 = styled.div`
   align-items: center;
   justify-content: center;
   transition: background-color 0.5s step;
+  position: relative;
 
   &.animate {
     .center {
