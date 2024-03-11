@@ -63,9 +63,7 @@ const slides = [
 
 function Project() {
   const ref = useRef(null);
-
   const [activeSlide, setActiveSlide] = useState(0);
-
   const slideWidth = 100;
 
   const prevSlide = () => {
@@ -93,12 +91,7 @@ function Project() {
               </button>
             </div>
 
-            <SlidesContainer
-              as={motion.div}
-              drag='x'
-              dragConstraints={{ left: -100 * (slides.length - 1), right: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
+            <SlidesContainer>
               {slides.map((slide, index) => (
                 <Slide
                   key={index}
@@ -369,14 +362,17 @@ const Con = styled(motion.div).attrs((props) => ({
   .ment {
     width: 80%;
     line-height: 1.8rem;
+    margin-bottom: 10px;
   }
 
   .skills {
-    line-height: 1.5rem;
+    width: 80%;
+    line-height: 1.8rem;
     margin-bottom: 15px;
   }
 
   .front {
+    width: 80%;
     line-height: 2em;
     margin-bottom: 15px;
   }
