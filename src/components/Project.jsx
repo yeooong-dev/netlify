@@ -315,7 +315,7 @@ const Con = styled(motion.div).attrs((props) => ({
   animate: props.animate ? "visible" : "hidden",
 }))`
   width: 90%;
-  height: 820px;
+  height: 850px;
   display: flex;
   align-items: center;
   justify-content: center;
