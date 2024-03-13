@@ -18,7 +18,7 @@ const slides = [
     skills:
       "주요 기능 : 회원가입, 로그인, 로그아웃, 오늘의 할 일, 캘린더, 경조사 등록, 기업페이지, 조직도 조회, 선착순 연차 신청, 검색 기능, 다크모드 등",
     front: "Front-end : TypeScript, styled-components, React-Query",
-    back: "Back-end : TypeScript, MySQL, Socket.IO",
+    back: "Back-end : TypeScript, MySQL",
     feLink: "https://github.com/yeooong-dev/FE-PORT",
     beLink: "https://github.com/yeooong-dev/BE-PORT",
     notionLink: "https://www.notion.so/PORT-2d4b3563c5954497bf39f77637d8ba07",
@@ -108,6 +108,7 @@ function Project() {
                     <p className='ment'>{slide.description}</p>
                     <p className='skills'>{slide.skills}</p>
                     <p className='front'>{slide.front}</p>
+                    <p className='back'>{slide.back}</p>
                     {slide.feLink && (
                       <a href={slide.feLink} target='_blank' rel='noreferrer'>
                         Front-end 코드 보기
@@ -315,7 +316,7 @@ const Con = styled(motion.div).attrs((props) => ({
   animate: props.animate ? "visible" : "hidden",
 }))`
   width: 90%;
-  height: 850px;
+  height: 900px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -375,15 +376,20 @@ const Con = styled(motion.div).attrs((props) => ({
   .front {
     width: 80%;
     line-height: 2em;
+  }
+
+  .back {
+    width: 80%;
+    line-height: 2em;
     margin-bottom: 15px;
   }
 
   @media (max-width: 1000px) {
-    height: 850px;
+    height: 900px;
   }
 
   @media (max-width: 550px) {
-    height: 800px;
+    height: 900px;
 
     h3 {
       font-size: 2rem;
