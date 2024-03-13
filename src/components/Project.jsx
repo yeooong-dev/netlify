@@ -389,7 +389,7 @@ const Con = styled(motion.div).attrs((props) => ({
   }
 
   @media (max-width: 550px) {
-    height: 900px;
+    height: 850px;
 
     h3 {
       font-size: 2rem;
@@ -429,7 +429,13 @@ const Con = styled(motion.div).attrs((props) => ({
     .front {
       font-size: 14px;
       line-height: 1.7rem;
+    }
+
+    .back {
+      font-size: 14px;
+      line-height: 1.7rem;
       margin-bottom: 10px;
+      color:red;
     }
   }
 `;
