@@ -14,8 +14,9 @@ const slides = [
     title: "PORT",
     team: "(개인프로젝트)",
     description:
-      "PORT는 누구든지 쉽게 이용이 가능하기 때문에 유용한 업무용 협업툴입니다. React와 Node.js를 활용하여 클라이언트와 서버를 전체적으로 구현했으며, 이를 통해 조금 더 깊게 이해할 수 있었습니다.",
-    skills: "주요 기능 : 로그인, CRUD, 검색 기능, 채팅 기능, 다크모드 등",
+      "이전에는 클라이언트 작업만 했었지만 서버 측 기술에 대해 이해도를 높이고 싶다는 목표로 개인 프로젝트를 진행하였습니다. React와 Node.js를 활용하여 클라이언트 및 서버 양쪽 모두를 구현하였으며, 배포까지 완료하였습니다. 이 과정을 통해 기술적 역량을 한층 더 심화시킬 수 있었습니다.",
+    skills:
+      "주요 기능 : 회원가입, 로그인, 로그아웃, 오늘의 할 일, 캘린더, 경조사 등록, 기업페이지, 조직도 조회, 선착순 연차 신청, 검색 기능, 다크모드 등",
     front: "Front-end : TypeScript, styled-components, React-Query",
     back: "Back-end : TypeScript, MySQL, Socket.IO",
     feLink: "https://github.com/yeooong-dev/FE-PORT",
@@ -28,9 +29,9 @@ const slides = [
     title: "MOOD",
     team: "(팀프로젝트)",
     description:
-      "MOOD 사이트는 사용자의 현재 기분을 선택하면 그에 맞는 클래식 음악을 추천하여 치유를 해주며, 같은 감정을 느끼는 사용자들끼리 서로 공감하게 만드는 사이트입니다.",
+      "MOOD 사이트는 사용자의 현재 기분을 선택하면 그에 맞는 클래식 음악을 추천하여 치유를 해주며, 같은 감정을 느끼는 사용자들끼리 서로 공감하게 만드는 사이트입니다. 팀 프로젝트로 협업을 통해 많은 것을 배운 프로젝트였습니다.",
     skills:
-      "맡은 기능 : 검색 기능, 좋아요∙스크랩 기능, 작곡가별 음악 추천 기능, 좋아요∙스트리밍 순 실시간 차트 기능, 음악 상세페이지(댓글, 대댓글) 기능",
+      "맡은 기능 : 검색 기능, 좋아요∙스크랩 기능, 작곡가별 음악 추천 기능, 좋아요∙스트리밍 순 실시간 차트 기능, 음악 상세페이지(댓글, 대댓글)와 소개페이지 스타일링, 반응형 구현",
     front: "Front-end : TypeScript, styled-components, React-Query, Redux",
     feLink: "https://github.com/MOOD-classic/FE-MOOD",
     notionLink: "https://www.notion.so/MOOD-f0f722a676194a7eb532e1be615f93c8",
@@ -40,8 +41,8 @@ const slides = [
     title: "SEOULCon",
     team: "(팀프로젝트)",
     description:
-      "SEOULCon은 전 세계 5억 명이 시청하고, 총합 팔로워 30억의 글로벌 셀럽 3,000팀이 현장에서 함께 즐기는 서울콘입니다. 외주 프로젝트로 참여하여 실제 협업 경험을 쌓았습니다.",
-    skills: "역할 : 웹사이트의 퍼블리싱을 담당",
+      "전 세계 5억 명이 시청하고, 총합 팔로워 30억의 글로벌 셀럽 3,000팀이 현장에서 함께 즐기는 서울콘입니다. 외주 프로젝트로 참여하게 되어 실제 협업 경험을 쌓았습니다. 웹디자이너분, 백엔드 개발자님과 소통을 하면서 조율해가는 과정이 매우 흥미로웠으며 많은 것을 배우는 과정이였습니다.",
+    skills: "역할 : 웹사이트 퍼블리싱 담당, 애니메이션, media-query 반응형",
     front: "Front-end : TypeScript, styled-components",
     feLink: "https://github.com/ysdls/seoul-front",
     siteLink: "https://www.seoul-con.com/ko",
@@ -314,7 +315,7 @@ const Con = styled(motion.div).attrs((props) => ({
   animate: props.animate ? "visible" : "hidden",
 }))`
   width: 90%;
-  height: 780px;
+  height: 820px;
   display: flex;
   align-items: center;
   justify-content: center;
