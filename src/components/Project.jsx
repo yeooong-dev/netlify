@@ -435,7 +435,6 @@ const Con = styled(motion.div).attrs((props) => ({
       font-size: 14px;
       line-height: 1.7rem;
       margin-bottom: 10px;
-      color:red;
     }
   }
 `;
