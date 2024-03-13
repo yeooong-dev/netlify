@@ -14,7 +14,7 @@ const slides = [
     title: "PORT",
     team: "(개인프로젝트)",
     description:
-      "PORT는 일정 관리 및 채팅 기능을 갖춘 업무용 협업 툴입니다. React와 Node.js를 활용하여 클라이언트와 서버를 전체적으로 구현했으며, 이를 통해 조금 더 깊게 이해할 수 있었습니다.",
+      "PORT는 누구든지 쉽게 이용이 가능하기 때문에 유용한 업무용 협업툴입니다. React와 Node.js를 활용하여 클라이언트와 서버를 전체적으로 구현했으며, 이를 통해 조금 더 깊게 이해할 수 있었습니다.",
     skills: "주요 기능 : 로그인, CRUD, 검색 기능, 채팅 기능, 다크모드 등",
     front: "Front-end : TypeScript, styled-components, React-Query",
     back: "Back-end : TypeScript, MySQL, Socket.IO",
