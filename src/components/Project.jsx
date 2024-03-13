@@ -379,11 +379,11 @@ const Con = styled(motion.div).attrs((props) => ({
   }
 
   @media (max-width: 1000px) {
-    height: 700px;
+    height: 850px;
   }
 
   @media (max-width: 550px) {
-    height: 650px;
+    height: 800px;
 
     h3 {
       font-size: 2rem;
